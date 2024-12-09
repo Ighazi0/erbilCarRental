@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "436707362957",
+    "project_id": "erbil-comma",
+    "storage_bucket": "erbil-comma.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436707362957:android:333a4b94f08079f924bac4",
+        "android_client_info": {
+          "package_name": "com.commatech.erbil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436707362957-p8jph1h3aeb6fjbcnimfqm6ijmeqd08k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcx3kCxaRMoicUgbTKzUAxSWVQlKuOWFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436707362957-p8jph1h3aeb6fjbcnimfqm6ijmeqd08k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,18 @@
+const Map<String, String> en = {
+  'hello': 'Hello',
+  'home': 'Home',
+  'categories': 'Categories',
+  'profile': 'Profile',
+  'economy': 'Economy',
+  'full_size_sedan': 'Full-Size sedan',
+  'standard_suv': 'Standard SUV',
+  'premium_suv': 'Premium SUV',
+  'compact_suv': 'Compact SUV',
+  'pick_up_return_dates': 'Pick-up & Return dates',
+  'pick_up': 'Pick-Up',
+  'return': 'Return',
+  'pick_up_location': 'Pick-Up Location',
+  'change': 'Change',
+  'select': 'Select',
+  'search': 'Search',
+};

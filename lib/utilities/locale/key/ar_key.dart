@@ -1,0 +1,18 @@
+const Map<String, String> ar = {
+  'hello': 'أهلا',
+  'home': 'الصفحة الرئيسية',
+  'categories': 'الفئات',
+  'profile': 'الحساب',
+  'economy': 'اقتصادي',
+  'full_size_sedan': 'سيارة سيدان كاملة الحجم',
+  'standard_suv': 'سيارة رياضية متعددة الاستخدامات قياسية',
+  'premium_suv': 'سيارة رياضية متعددة الاستخدامات فاخرة',
+  'compact_suv': 'سيارة رياضية متعددة الاستخدامات مدمجة',
+  'pick_up_return_dates': 'تواريخ الاستلام والإرجاع',
+  'pick_up': 'الاستلام',
+  'return': 'الإرجاع',
+  'pick_up_location': 'مكان الاستلام',
+  'change': 'تغير',
+  'select': 'اختر',
+  'search': 'بحث',
+};
