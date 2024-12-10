@@ -1,5 +1,3 @@
-import 'package:erbil/controller/auth_controller.dart';
-import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/utilities/firebase/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -14,8 +12,6 @@ class InitialData {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
     getSavedLocale();
-    Get.lazyPut(() => AuthController());
-    Get.lazyPut(() => MainController());
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);

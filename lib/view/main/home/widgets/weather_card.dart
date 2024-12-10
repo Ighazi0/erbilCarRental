@@ -19,14 +19,15 @@ class WeatherCard extends StatelessWidget {
               height: 150,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               width: Get.width,
-              margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              margin: const EdgeInsets.symmetric(vertical: 5),
               decoration: BoxDecoration(
                   borderRadius: borderRadius,
                   color: DateTime.now().hour > 18 ? nightSkyColor : skyColor,
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.blue.shade100,
-                        blurRadius: 5,
+                        color:
+                            DateTime.now().hour > 18 ? nightSkyColor : skyColor,
+                        blurRadius: 3,
                         spreadRadius: 2)
                   ]),
               child: mainController.weatherData.value.id == null

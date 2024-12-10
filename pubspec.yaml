@@ -29,6 +29,8 @@ dependencies:
   shimmer: ^3.0.0
   intl: ^0.20.1
 
+  omni_datetime_picker: ^2.0.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

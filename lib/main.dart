@@ -10,7 +10,7 @@ Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 void main() async {
-  InitialData().initialApp();
+  await InitialData().initialApp();
   runApp(const MyApp());
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {});

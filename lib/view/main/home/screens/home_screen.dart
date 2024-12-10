@@ -1,4 +1,5 @@
 import 'package:erbil/controller/auth_controller.dart';
+import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/main/home/widgets/categories_card.dart';
 import 'package:erbil/view/main/home/widgets/location_card.dart';
 import 'package:erbil/view/main/home/widgets/pick_date_time_card.dart';
@@ -15,16 +16,24 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            '${'hello'.tr} ${authController.userData?.fullName == null ? '' : ', '} ${authController.userData?.fullName ?? ''}',
+            '${'hello'.tr}${authController.userData?.fullName == null ? '' : ', '} ${authController.userData?.fullName ?? ''}',
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView(
-          children: const [
-            WeatherCard(),
-            CategoriesCard(),
-            PickDateTimeCard(),
-            LocationCard()
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          children: [
+            const WeatherCard(),
+            const CategoriesCard(),
+            const LocationCard(),
+            const PickDateTimeCard(),
+            const SizedBox(
+              height: 15,
+            ),
+            CustomButton(
+              onPressed: () {},
+              title: 'search',
+            )
           ],
         ));
   }

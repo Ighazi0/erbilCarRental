@@ -1,4 +1,7 @@
 import 'package:erbil/controller/auth_controller.dart';
+import 'package:erbil/utilities/custom_ui/custom_dialog.dart';
+import 'package:erbil/view/auth/sign_in_screen.dart';
+import 'package:erbil/view/settings/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authController = Get.find<AuthController>();
+    AuthController authController = Get.find();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -17,48 +20,47 @@ class ProfileScreen extends StatelessWidget {
             'https://via.placeholder.com/150',
           ),
         ),
-        const SizedBox(height: 16),
         Text(
           authController.userData?.firstName ?? '',
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          authController.userData?.email ?? '',
-          style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-        ),
-        const SizedBox(height: 24),
-        ElevatedButton.icon(
-          onPressed: () {},
-          icon: const Icon(Icons.edit),
-          label: const Text('Edit Profile'),
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity, 50),
-            textStyle: const TextStyle(fontSize: 18),
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
-        ElevatedButton.icon(
-          onPressed: () {},
-          icon: const Icon(Icons.settings),
-          label: const Text('Settings'),
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity, 50),
-            textStyle: const TextStyle(fontSize: 18),
+        ListTile(
+          title: Text(
+            'settings'.tr,
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
+          onTap: () {
+            Get.to(() => const SettingsScreen());
+          },
+          leading: const Icon(Icons.settings),
         ),
-        const SizedBox(height: 16),
-        // Logout Button
-        ElevatedButton.icon(
-          onPressed: () {},
-          icon: const Icon(Icons.logout),
-          label: const Text('Logout'),
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity, 50),
-            textStyle: const TextStyle(fontSize: 18),
-            backgroundColor: Colors.red,
+        ListTile(
+          onTap: () {
+            if (authController.userData == null) {
+              Get.to(() => const SignInScreen());
+            } else {
+              CustomDialog().showSureDialog(
+                  'are_you_sure_to_sign_out', '', 'yes', onPressed: () {
+                authController.signOut();
+              });
+            }
+          },
+          title: Text(
+            authController.userData == null ? 'sign_in'.tr : 'sign_out'.tr,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: authController.userData == null
+                    ? Colors.black
+                    : Colors.red),
           ),
-        ),
+          leading: Icon(
+            authController.userData == null ? Icons.login : Icons.logout,
+            color: authController.userData == null ? Colors.black : Colors.red,
+          ),
+        )
       ],
     );
   }

@@ -21,8 +21,8 @@ class FloatNavigationBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               customIcon(Icons.home, 'home'.tr, 0),
-              customIcon(Icons.home, 'home'.tr, 1),
-              customIcon(Icons.person, 'profile'.tr, 2),
+              customIcon(Icons.search, 'search'.tr, 1),
+              customIcon(Icons.paste, 'bookings'.tr, 2),
               customIcon(Icons.person, 'profile'.tr, 3)
             ],
           ),

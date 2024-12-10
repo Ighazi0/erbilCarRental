@@ -12,7 +12,7 @@ class PickDateTimeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final mainController = Get.find<MainController>();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,8 +34,8 @@ class PickDateTimeCard extends StatelessWidget {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              AppFunctions().onPressedWithHaptic(() {
-                                mainController.selectPickUpDateTime();
+                              AppFunctions().onPressedWithHaptic(() async {
+                                mainController.selectPickUpDateTime(context);
                               });
                             },
                             child: Padding(
@@ -67,18 +67,10 @@ class PickDateTimeCard extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        DateFormat('EE').format(
-                                            mainController.returnDate.value),
-                                      ),
-                                      Text(
-                                        ', ${mainController.returnTime.value.format(context)}',
-                                      ),
-                                    ],
-                                  )
+                                  Text(
+                                    DateFormat('EE, hh:mm a').format(
+                                        mainController.pickupDate.value),
+                                  ),
                                 ],
                               ),
                             ),
@@ -92,7 +84,7 @@ class PickDateTimeCard extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               AppFunctions().onPressedWithHaptic(() {
-                                mainController.selectReturnDateTime();
+                                mainController.selectReturnDateTime(context);
                               });
                             },
                             child: Padding(
@@ -124,18 +116,10 @@ class PickDateTimeCard extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        DateFormat('EE').format(
-                                            mainController.returnDate.value),
-                                      ),
-                                      Text(
-                                        ', ${mainController.returnTime.value.format(context)}',
-                                      ),
-                                    ],
-                                  )
+                                  Text(
+                                    DateFormat('EE, hh:mm a').format(
+                                        mainController.returnDate.value),
+                                  ),
                                 ],
                               ),
                             ),

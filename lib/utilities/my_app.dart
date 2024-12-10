@@ -1,3 +1,4 @@
+import 'package:erbil/utilities/custom_binding.dart';
 import 'package:erbil/utilities/initial_data.dart';
 import 'package:erbil/utilities/locale/app_localization.dart';
 import 'package:erbil/view/app/screens/splash_screen.dart';
@@ -12,8 +13,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       locale: Locale(appLanguage),
+      theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme:
+              const AppBarTheme(backgroundColor: Colors.white, elevation: 0)),
       translations: LanguageLocalization(),
       home: const SplashScreen(),
+      initialBinding: MainBinding(),
     );
   }
 }

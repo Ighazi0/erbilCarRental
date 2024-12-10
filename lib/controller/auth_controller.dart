@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erbil/model/user_model.dart';
-import 'package:erbil/view/main/home/screens/home_screen.dart';
+import 'package:erbil/view/main/screens/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,7 @@ class AuthController extends GetxController {
     String uid = firebaseAuth.currentUser?.uid ?? '';
     await getCurrentUserData(uid);
     getStorage.write('uid', uid);
-    Get.offAll(() => const HomeScreen());
+    Get.offAll(() => const MainScreen());
     clearData();
   }
 
@@ -60,7 +60,7 @@ class AuthController extends GetxController {
         email: email.text,
         password: password.text,
         fullName: name.text);
-    Get.offAll(() => const HomeScreen());
+    Get.offAll(() => const MainScreen());
     createUserAccount(uid, userData!);
     getStorage.write('uid', uid);
     clearData();
@@ -94,7 +94,8 @@ class AuthController extends GetxController {
 
   signOut() async {
     getStorage.remove('uid');
+    userData = null;
     await firebaseAuth.signOut();
-    Get.offAll(() => const HomeScreen());
+    Get.offAll(() => const MainScreen());
   }
 }
