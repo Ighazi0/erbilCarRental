@@ -12,19 +12,21 @@ class FloatNavigationBar extends StatelessWidget {
     return Positioned(
       left: 10,
       right: 10,
-      bottom: 10,
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: borderRadius),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              customIcon(Icons.home, 'home'.tr, 0),
-              customIcon(Icons.search, 'search'.tr, 1),
-              customIcon(Icons.paste, 'bookings'.tr, 2),
-              customIcon(Icons.person, 'profile'.tr, 3)
-            ],
+      bottom: 0,
+      child: SafeArea(
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: borderRadius),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                customIcon(Icons.home, 'home'.tr, 0),
+                customIcon(Icons.search, 'search'.tr, 1),
+                customIcon(Icons.paste, 'bookings'.tr, 2),
+                customIcon(Icons.person, 'profile'.tr, 3)
+              ],
+            ),
           ),
         ),
       ),

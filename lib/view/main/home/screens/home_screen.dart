@@ -17,7 +17,8 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             '${'hello'.tr}${authController.userData?.fullName == null ? '' : ', '} ${authController.userData?.fullName ?? ''}',
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ),
         body: ListView(

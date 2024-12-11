@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
       locale: Locale(appLanguage),
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
-          appBarTheme:
-              const AppBarTheme(backgroundColor: Colors.white, elevation: 0)),
+          useMaterial3: false,
+          appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.white, elevation: 0, centerTitle: false)),
       translations: LanguageLocalization(),
       home: const SplashScreen(),
       initialBinding: MainBinding(),
