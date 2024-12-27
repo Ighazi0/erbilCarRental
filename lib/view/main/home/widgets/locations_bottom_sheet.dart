@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erbil/model/location_model.dart';
 import 'package:erbil/utilities/app_functions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +18,7 @@ class LocationsBottomSheet extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<LocationModel> locations = snapshot.data!.docs
-                  .map((m) => LocationModel.fromMap(m.data()))
+                  .map((m) => LocationModel.fromMap(m.data(), m.id))
                   .toList();
               if (locations.isEmpty) {
                 return Align(
@@ -32,28 +31,38 @@ class LocationsBottomSheet extends StatelessWidget {
               }
               return Column(
                 children: [
-                  if (locations.isNotEmpty)
-                    CupertinoSearchTextField(
-                      borderRadius: BorderRadius.circular(25),
-                      prefixInsets: const EdgeInsets.only(left: 15),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 12.5),
-                      placeholder: 'search'.tr,
-                    ),
+                  // if (locations.isNotEmpty)
+                  //   CupertinoSearchTextField(
+                  //     borderRadius: BorderRadius.circular(25),
+                  //     prefixInsets: const EdgeInsets.only(left: 15),
+                  //     padding: const EdgeInsets.symmetric(
+                  //         horizontal: 15, vertical: 12.5),
+                  //     placeholder: 'search'.tr,
+                  //   ),
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: locations.length,
-                      itemBuilder: (context, index) {
-                        LocationModel location = locations[index];
-                        return ListTile(
-                          onTap: () {
-                            AppFunctions().onPressedWithHaptic(() {
-                              onTap(index.toString());
-                            });
-                          },
-                          title: Text(location.titleEn ?? ''),
-                        );
-                      },
+                    child: ScrollConfiguration(
+                      behavior:
+                          const ScrollBehavior().copyWith(overscroll: false),
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) => const Divider(
+                          thickness: 1,
+                        ),
+                        physics: const ClampingScrollPhysics(),
+                        itemCount: locations.length,
+                        itemBuilder: (context, index) {
+                          LocationModel location = locations[index];
+                          return ListTile(
+                            onTap: () {
+                              AppFunctions().onPressedWithHaptic(() {
+                                onTap(location.titleEn);
+                              });
+                            },
+                            title: Text(
+                              location.titleEn ?? '',
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   )
                 ],

@@ -1,6 +1,5 @@
 class LocationModel {
-  int? id;
-  String? titleAr, titleEn, descriptionAr, descriptionEn;
+  String? titleAr, titleEn, descriptionAr, descriptionEn, id;
 
   LocationModel({
     this.id,
@@ -13,20 +12,20 @@ class LocationModel {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'title_ar': titleAr,
-      'title_en': titleEn,
-      'description_ar': descriptionAr,
-      'description_en': descriptionEn,
+      'titleAr': titleAr,
+      'titleEn': titleEn,
+      'descriptionAr': descriptionAr,
+      'descriptionEn': descriptionEn,
     };
   }
 
-  static LocationModel fromMap(Map map) {
+  static LocationModel fromMap(Map map, String id) {
     return LocationModel(
-      id: map['id'],
-      titleAr: map['title_ar'],
-      titleEn: map['title_en'],
-      descriptionAr: map['description_ar'],
-      descriptionEn: map['description_en'],
+      id: id,
+      titleAr: map['titleAr'],
+      titleEn: map['titleEn'],
+      descriptionAr: map['descriptionAr'],
+      descriptionEn: map['descriptionEn'],
     );
   }
 }

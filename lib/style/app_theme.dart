@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 BorderRadiusGeometry borderRadius = BorderRadius.circular(25);
 List<BoxShadow> show = [
-  const BoxShadow(color: Colors.black54, blurRadius: 1, spreadRadius: 1)
+  const BoxShadow(color: Colors.black26, blurRadius: 1, spreadRadius: 1)
 ];
 
 Color primaryColor = Colors.black;

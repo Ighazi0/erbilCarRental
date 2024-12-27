@@ -21,21 +21,25 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ),
-        body: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          children: [
-            const WeatherCard(),
-            const CategoriesCard(),
-            const LocationCard(),
-            const PickDateTimeCard(),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomButton(
-              onPressed: () {},
-              title: 'search',
-            )
-          ],
+        body: ScrollConfiguration(
+          behavior: const ScrollBehavior().copyWith(overscroll: false),
+          child: ListView(
+            physics: const ClampingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            children: [
+              const WeatherCard(),
+              const CategoriesCard(),
+              const LocationCard(),
+              const PickDateTimeCard(),
+              const SizedBox(
+                height: 15,
+              ),
+              CustomButton(
+                onPressed: () {},
+                title: 'search',
+              )
+            ],
+          ),
         ));
   }
 }

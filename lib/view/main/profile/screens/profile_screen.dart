@@ -1,7 +1,11 @@
 import 'package:erbil/controller/auth_controller.dart';
+import 'package:erbil/style/app_theme.dart';
+import 'package:erbil/utilities/custom_ui/custom_bottom_sheet.dart';
 import 'package:erbil/utilities/custom_ui/custom_dialog.dart';
+import 'package:erbil/utilities/initial_data.dart';
 import 'package:erbil/view/auth/sign_in_screen.dart';
-import 'package:erbil/view/settings/screens/settings_screen.dart';
+import 'package:erbil/view/main/profile/widgets/change_currency.dart';
+import 'package:erbil/view/main/profile/widgets/change_langauge.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
         const CircleAvatar(
           radius: 60,
           backgroundImage: NetworkImage(
-            'https://via.placeholder.com/150',
+            'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg',
           ),
         ),
         Text(
@@ -27,15 +31,48 @@ class ProfileScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        // ListTile(
+        //   title: Text(
+        //     'settings'.tr,
+        //     style: const TextStyle(fontWeight: FontWeight.bold),
+        //   ),
+        //   onTap: () {
+        //     Get.to(() => const SettingsScreen());
+        //   },
+        //   leading: const Icon(Icons.settings),
+        // ),
         ListTile(
           title: Text(
-            'settings'.tr,
+            'currency'.tr,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           onTap: () {
-            Get.to(() => const SettingsScreen());
+            CustomBottomSheet().simpleBottomSheet(
+              const ChangeCurrency(),
+            );
           },
-          leading: const Icon(Icons.settings),
+          leading: const Icon(Icons.currency_exchange),
+        ),
+        ListTile(
+          title: Text(
+            'language'.tr,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          trailing: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            decoration:
+                BoxDecoration(borderRadius: borderRadius, color: primaryColor),
+            child: Text(
+              appLanguage.tr,
+              style: TextStyle(color: secondaryColor),
+            ),
+          ),
+          onTap: () {
+            CustomBottomSheet().simpleBottomSheet(
+              const ChangeLangauge(),
+            );
+          },
+          leading: const Icon(Icons.language),
         ),
         ListTile(
           onTap: () {
