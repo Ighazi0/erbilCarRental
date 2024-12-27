@@ -4,9 +4,3 @@ const List<Map<String, String>> languages = [
   {'en': '🇺🇸'},
   {'ku': '🇹🇯'}
 ];
-
-const List<Map<String, String>> currencies = [
-  {'AED': '🇦🇪'},
-  {'USD': '🇺🇸'},
-  {'IQD': '🇮🇶'}
-];

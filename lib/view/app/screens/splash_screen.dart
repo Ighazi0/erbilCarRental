@@ -13,11 +13,11 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   startApp() async {
-    await Future.delayed(const Duration(milliseconds: 500));
     var uid = GetStorage().read('uid');
     if (uid == null) {
-      await Future.delayed(const Duration(seconds: 1));
+      await Get.find<AuthController>().getAppData();
     } else {
+      await Get.find<AuthController>().getAppData();
       await Get.find<AuthController>().getCurrentUserData(uid);
     }
     Get.off(() => const MainScreen());

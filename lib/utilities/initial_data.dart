@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 String appLanguage = 'en';
-String appCurrency = 'AED';
 
 class InitialData {
   initialApp() async {
@@ -21,10 +20,5 @@ class InitialData {
   getSavedLocale() {
     String? locale = GetStorage().read('locale');
     appLanguage = locale ?? Get.deviceLocale?.languageCode ?? 'en';
-  }
-
-  getSavedCurrency() {
-    String? currency = GetStorage().read('currency');
-    appCurrency = currency ?? 'AED';
   }
 }

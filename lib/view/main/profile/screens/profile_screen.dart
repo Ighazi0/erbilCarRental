@@ -1,4 +1,5 @@
 import 'package:erbil/controller/auth_controller.dart';
+import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/utilities/custom_ui/custom_bottom_sheet.dart';
 import 'package:erbil/utilities/custom_ui/custom_dialog.dart';
@@ -51,6 +52,16 @@ class ProfileScreen extends StatelessWidget {
               const ChangeCurrency(),
             );
           },
+          trailing: Obx(() => Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                    borderRadius: borderRadius, color: primaryColor),
+                child: Text(
+                  Get.find<MainController>().appCurrency.value.code ?? '',
+                  style: TextStyle(color: secondaryColor),
+                ),
+              )),
           leading: const Icon(Icons.currency_exchange),
         ),
         ListTile(

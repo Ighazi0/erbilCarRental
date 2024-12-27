@@ -1,3 +1,4 @@
+import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/utilities/app_functions.dart';
 import 'package:erbil/utilities/initial_data.dart';
@@ -16,7 +17,7 @@ class ChangeLangauge extends StatelessWidget {
               (m) => ListTile(
                 onTap: () {
                   AppFunctions().onPressedWithHaptic(() {
-                    AppFunctions().changeLocale(m.keys.first);
+                    Get.find<MainController>().changeLocale(m.keys.first);
                     Get.back();
                   });
                 },

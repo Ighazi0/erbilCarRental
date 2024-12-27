@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'package:erbil/model/currency_model.dart';
 import 'package:erbil/model/weather_model.dart';
+import 'package:erbil/utilities/app_functions.dart';
 import 'package:erbil/utilities/end_points.dart';
 import 'package:erbil/utilities/initial_data.dart';
 import 'package:erbil/utilities/static_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
@@ -12,6 +15,7 @@ class MainController extends GetxController {
   RxInt mainPageIndex = 0.obs;
   Rx<WeatherModel> weatherData = WeatherModel().obs;
   Rx<DateTime> pickupDate = DateTime.now().obs, returnDate = DateTime.now().obs;
+  Rx<CurrencyModel> appCurrency = CurrencyModel(code: 'AED', rate: 1).obs;
 
   RxString pickupLocation = ''.obs;
   final RxList<DateTime> selectedDateRange = <DateTime>[].obs;
@@ -19,7 +23,30 @@ class MainController extends GetxController {
   @override
   onInit() {
     fetchWeather();
+    getSavedCurrency();
     super.onInit();
+  }
+
+  getSavedCurrency() {
+    Map? currency = GetStorage().read('currency');
+    if (currency != null) {
+      appCurrency.value = CurrencyModel.fromMap(currency);
+    }
+  }
+
+  changeLocale(String locale) {
+    AppFunctions().onPressedWithHaptic(() {
+      GetStorage().write('locale', locale);
+      Get.updateLocale(Locale(locale));
+      appLanguage = locale;
+    });
+  }
+
+  changeCurrency(CurrencyModel currency) {
+    AppFunctions().onPressedWithHaptic(() {
+      GetStorage().write('currency', currency.toMap());
+      appCurrency.value = currency;
+    });
   }
 
   changeMainPage(int newIndex) {

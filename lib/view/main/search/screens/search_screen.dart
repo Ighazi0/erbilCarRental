@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erbil/model/car_model.dart';
-import 'package:erbil/style/app_theme.dart';
-import 'package:erbil/utilities/initial_data.dart';
+import 'package:erbil/view/car/car_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,58 +47,7 @@ class SearchScreen extends StatelessWidget {
                       physics: const ClampingScrollPhysics(),
                       itemBuilder: (context, index) {
                         CarModel car = cars[index];
-                        return Container(
-                          decoration: BoxDecoration(
-                              borderRadius: borderRadius,
-                              boxShadow: show,
-                              color: Colors.white),
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.vertical(
-                                    top: Radius.circular(25)),
-                                child: SizedBox(
-                                    height: 200,
-                                    width: Get.width,
-                                    child: CachedNetworkImage(
-                                      imageUrl: car.images?.firstOrNull ?? '',
-                                      fit: BoxFit.fill,
-                                    )),
-                              ),
-                              ListTile(
-                                title: Text(car.name ?? ''),
-                                subtitle: Text(
-                                  car.year ?? '',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                child: Divider(
-                                  thickness: 1,
-                                  height: 0,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text('data'),
-                                    Text(
-                                      '$appCurrency ${car.price.toString().replaceAll('.0', '')}/${'day'.tr}',
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        );
+                        return CarCard(carData: car);
                       },
                     );
                   }

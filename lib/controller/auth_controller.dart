@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erbil/model/app_data_model.dart';
 import 'package:erbil/model/user_model.dart';
 import 'package:erbil/view/main/screens/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,6 +21,17 @@ class AuthController extends GetxController {
       deletingAccount = false.obs;
   GetStorage getStorage = GetStorage();
   UserModel? userData;
+  AppDataModel? appData;
+
+  getAppData() async {
+    await firebaseFirestore.collection('appData').doc('admin').get().then((v) {
+      if (v.exists) {
+        appData = AppDataModel.fromJson(v.data() as Map);
+      } else {
+        signOut();
+      }
+    });
+  }
 
   getCurrentUserData(String? uid) async {
     await firebaseFirestore.collection('users').doc(uid).get().then((v) {
