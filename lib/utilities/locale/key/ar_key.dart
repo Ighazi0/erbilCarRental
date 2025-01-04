@@ -26,4 +26,14 @@ const Map<String, String> ar = {
   'are_you_sure_to_sign_out': 'هل أنت متأكد من تسجيل الخروج؟',
   'day': 'يوم',
   'currency': 'العملة',
+  'email_address': 'البريد الإلكتروني',
+  'please_enter_your_email': 'يرجى إدخال بريدك الإلكتروني',
+  'password': 'كلمة المرور',
+  'password_must_be_at_least_6_characters':
+      'يجب أن تكون كلمة المرور مكونة من 6 أحرف على الأقل',
+  'dont_have_an_account': 'ليس لديك حساب؟',
+  'already_have_an_account': 'لديك حساب بالفعل؟',
+  'full_name': 'الاسم الكامل',
+  'back': 'رجوع',
+  'forgot_password': 'نسيت كلمة السر؟',
 };

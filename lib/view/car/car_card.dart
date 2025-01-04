@@ -23,7 +23,7 @@ class CarCard extends StatelessWidget {
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(25)),
               child: SizedBox(
-                  height: 200,
+                  height: 175,
                   width: Get.width,
                   child: CachedNetworkImage(
                     imageUrl: carData.images?.firstOrNull ?? '',

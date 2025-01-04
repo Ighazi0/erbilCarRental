@@ -26,4 +26,13 @@ const Map<String, String> ku = {
   'are_you_sure_to_sign_out': 'Tu pirr bawerîyî ku derkeve?',
   'day': 'roj',
   'currency': 'diravcins',
+  'email_address': 'Navnîşa E-nameyê',
+  'please_enter_your_email': 'Ji kerema xwe navnîşa E-nameya xwe binivîse',
+  'password': 'Şîfre',
+  'password_must_be_at_least_6_characters': 'Şîfre divê herî kêm 6 tîpan hebe',
+  'dont_have_an_account': 'Hesab tune ye?',
+  'already_have_an_account': 'Tu pêşî hesabek te heye?',
+  'full_name': 'Navê tevahî',
+  'back': 'Vegere',
+  'forgot_password': 'Şîfre ji bîr kirî?',
 };

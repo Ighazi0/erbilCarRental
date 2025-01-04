@@ -1,4 +1,5 @@
 import 'package:erbil/controller/auth_controller.dart';
+import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,58 +9,80 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthController authController = Get.find<AuthController>();
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Forgot Password'),
-      ),
-      body: Padding(
+      body: SafeArea(
+          child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Reset Password',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Enter your email address to reset your password. We will send a password reset link to your email.',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 24),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Email Address',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.email),
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 40, bottom: 50),
+                child: Text(
+                  'reset_password'.tr,
+                  style: const TextStyle(
+                      fontSize: 40, fontWeight: FontWeight.bold),
+                ),
               ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 24),
-            Obx(
-              () => authController.sendingLink.value
+              Text(
+                'enter_your_email_address_to_reset_your_password.we_will_send_a_password_reset_link_to_your_email'
+                    .tr,
+                style: const TextStyle(fontSize: 16),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24),
+                child: TextFormField(
+                  controller: authController.email,
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                            .hasMatch(value)) {
+                      return 'please_enter_your_email'.tr;
+                    }
+
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'email_address'.tr,
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.email),
+                  ),
+                ),
+              ),
+              Obx(() => authController.sendingLink.value
                   ? const CircularProgressIndicator()
-                  : ElevatedButton(
-                      onPressed: () {
-                        authController.resetPassword();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 50),
+                  : Hero(
+                      tag: 'auth',
+                      child: CustomButton(
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            authController.resetPassword();
+                          }
+                        },
+                        title: 'send_reset_link',
                       ),
-                      child: const Text('Send Reset Link'),
-                    ),
-            ),
-            const SizedBox(height: 16),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Back to Login'),
-            ),
-          ],
+                    )),
+              Align(
+                child: TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text(
+                    'back'.tr,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
+      )),
     );
   }
 }

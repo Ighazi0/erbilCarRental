@@ -26,4 +26,18 @@ const Map<String, String> en = {
   'are_you_sure_to_sign_out': 'Are you sure to sign out?',
   'day': 'day',
   'currency': 'Currency',
+  'email_address': 'Email Address',
+  'please_enter_your_email': 'Please enter your email',
+  'password': 'Password',
+  'password_must_be_at_least_6_characters':
+      'Password must be at least 6 characters',
+  'dont_have_an_account': 'Don\'t have an account?',
+  'already_have_an_account': 'Already have an account?',
+  'full_name': 'Full Name',
+  'back': 'Back',
+  'forgot_password': 'Forgot Password?',
+  'send_reset_link': 'Send Reset Link',
+  'reset_password': 'Reset Password',
+  'enter_your_email_address_to_reset_your_password.we_will_send_a_password_reset_link_to_your_email':
+      'Enter your email address to reset your password. We will send a password reset link to your email',
 };
