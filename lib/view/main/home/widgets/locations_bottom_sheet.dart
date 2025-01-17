@@ -54,11 +54,11 @@ class LocationsBottomSheet extends StatelessWidget {
                           return ListTile(
                             onTap: () {
                               AppFunctions().onPressedWithHaptic(() {
-                                onTap(location.titleEn);
+                                onTap(location.nameEn);
                               });
                             },
                             title: Text(
-                              location.titleEn ?? '',
+                              location.nameEn ?? '',
                             ),
                           );
                         },

@@ -6,9 +6,14 @@ import 'package:get/get.dart';
 class CustomButton extends StatelessWidget {
   final Function onPressed;
   final String title;
+  final Widget? titleWidget;
   final double? width;
   const CustomButton(
-      {super.key, required this.onPressed, this.title = '', this.width});
+      {super.key,
+      required this.onPressed,
+      this.title = '',
+      this.width,
+      this.titleWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +28,14 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: borderRadius),
         padding: const EdgeInsets.symmetric(vertical: 10),
         color: primaryColor,
-        child: Text(
-          title.tr,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18),
-        ),
+        child: titleWidget ??
+            Text(
+              title.tr,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 18),
+            ),
       ),
     );
   }

@@ -1,18 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CarModel {
-  final String? id, transmission, name, description, status, model, year;
+  final String? id, transmission, name, description, status, year, seats, color;
   final List? images;
-  final bool? rented;
   final double? price;
-  final DocumentReference? location, type;
-  final Timestamp? updatedAt;
+  final DocumentReference? location, type, model;
 
   CarModel(
       {this.id,
       this.images,
       this.transmission,
-      this.rented,
       this.price,
       this.name,
       this.description,
@@ -20,7 +17,8 @@ class CarModel {
       this.model,
       this.type,
       this.status,
-      this.updatedAt,
+      this.seats,
+      this.color,
       this.year});
 
   Map<String, dynamic> toMap() {
@@ -28,7 +26,6 @@ class CarModel {
       'id': id,
       'images': images,
       'transmission': transmission,
-      'rented': rented,
       'price': price,
       'name': name,
       'description': description,
@@ -36,8 +33,9 @@ class CarModel {
       'model': model,
       'type': type,
       'status': status,
-      'updatedAt': updatedAt,
       'year': year,
+      'color': color,
+      'seats': seats,
     };
   }
 
@@ -46,7 +44,6 @@ class CarModel {
       id: id,
       images: map['images'],
       transmission: map['transmission'],
-      rented: map['rented'],
       price: double.tryParse(map['price'].toString()),
       name: map['name'],
       description: map['description'],
@@ -54,25 +51,9 @@ class CarModel {
       model: map['model'],
       type: map['type'],
       status: map['status'],
-      updatedAt: map['updatedAt'],
-      year: map['year'],
+      year: map['year'].toString(),
+      seats: map['seats'].toString(),
+      color: map['color'],
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'images': images,
-      'transmission': transmission,
-      'rented': rented,
-      'price': price,
-      'name': name,
-      'description': description,
-      'location': location,
-      'model': model,
-      'type': type,
-      'status': status,
-      'updatedAt': updatedAt,
-      'year': year
-    };
   }
 }

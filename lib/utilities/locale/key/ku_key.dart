@@ -35,4 +35,10 @@ const Map<String, String> ku = {
   'full_name': 'Navê tevahî',
   'back': 'Vegere',
   'forgot_password': 'Şîfre ji bîr kirî?',
+  'seats': 'Seats',
+  'automatic': 'Automatic',
+  'color': 'Color',
+  'same_to_same': 'Same to same',
+  'fuel_policy': 'Fuel policy',
+  'rent': 'Rent'
 };

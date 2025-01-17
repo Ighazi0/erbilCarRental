@@ -36,4 +36,10 @@ const Map<String, String> ar = {
   'full_name': 'الاسم الكامل',
   'back': 'رجوع',
   'forgot_password': 'نسيت كلمة السر؟',
+  'seats': 'مقاعد',
+  'automatic': 'اوتوماتيك',
+  'color': 'اللون',
+  'same_to_same': 'نفس الشيء',
+  'fuel_policy': 'سياسة الوقود',
+  'rent': 'استأجر'
 };

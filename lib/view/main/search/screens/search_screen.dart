@@ -31,8 +31,10 @@ class SearchScreen extends StatelessWidget {
             ),
             Expanded(
               child: StreamBuilder(
-                stream:
-                    FirebaseFirestore.instance.collection('cars').snapshots(),
+                stream: FirebaseFirestore.instance
+                    .collection('cars')
+                    .where('status', isEqualTo: 'available')
+                    .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List<CarModel> cars = snapshot.data!.docs

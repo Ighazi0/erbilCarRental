@@ -1,7 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/model/car_model.dart';
 import 'package:erbil/style/app_theme.dart';
+import 'package:erbil/view/app/widgets/custom_image.dart';
+import 'package:erbil/view/car/car_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,9 @@ class CarCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.to(() => CarDetailsScreen(carData: carData));
+      },
       child: Container(
         decoration: BoxDecoration(
             borderRadius: borderRadius, boxShadow: show, color: Colors.white),
@@ -25,9 +28,9 @@ class CarCard extends StatelessWidget {
               child: SizedBox(
                   height: 175,
                   width: Get.width,
-                  child: CachedNetworkImage(
-                    imageUrl: carData.images?.firstOrNull ?? '',
-                    fit: BoxFit.fill,
+                  child: CustomImage(
+                    url: carData.images?.firstOrNull ?? '',
+                    boxFit: BoxFit.fill,
                   )),
             ),
             ListTile(
@@ -49,7 +52,16 @@ class CarCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('data'),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.local_gas_station),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text('same_to_same'.tr),
+                    ],
+                  ),
                   Obx(() {
                     var c = Get.find<MainController>().appCurrency.value;
                     return Text(

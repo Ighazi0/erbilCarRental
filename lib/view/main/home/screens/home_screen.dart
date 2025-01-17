@@ -1,5 +1,6 @@
 import 'package:erbil/controller/auth_controller.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
+import 'package:erbil/view/car/filtred_car_screen.dart';
 import 'package:erbil/view/main/home/widgets/categories_card.dart';
 import 'package:erbil/view/main/home/widgets/location_card.dart';
 import 'package:erbil/view/main/home/widgets/pick_date_time_card.dart';
@@ -35,7 +36,9 @@ class HomeScreen extends StatelessWidget {
                 height: 15,
               ),
               CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const FiltredCarScreen());
+                },
                 title: 'search',
               )
             ],

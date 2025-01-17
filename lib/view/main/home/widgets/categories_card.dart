@@ -1,8 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erbil/model/category_model.dart';
 import 'package:erbil/style/app_theme.dart';
+import 'package:erbil/view/app/widgets/custom_image.dart';
 import 'package:erbil/view/app/widgets/shimmer_effect.dart';
+import 'package:erbil/view/car/filtred_car_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,6 +39,9 @@ class CategoriesCard extends StatelessWidget {
                       itemBuilder: (context, index) {
                         CategoryModel category = categories[index];
                         return GestureDetector(
+                          onTap: () {
+                            Get.to(() => const FiltredCarScreen());
+                          },
                           child: SizedBox(
                             height: 75,
                             width: 150,
@@ -49,8 +53,8 @@ class CategoriesCard extends StatelessWidget {
                                   SizedBox(
                                       height: 75,
                                       width: 150,
-                                      child: CachedNetworkImage(
-                                          imageUrl: category.image ?? '')),
+                                      child: CustomImage(
+                                          url: category.image ?? '')),
                                   Text(
                                     category.titleEn?.tr ?? '',
                                     maxLines: 2,

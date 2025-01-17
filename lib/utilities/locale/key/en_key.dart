@@ -40,4 +40,10 @@ const Map<String, String> en = {
   'reset_password': 'Reset Password',
   'enter_your_email_address_to_reset_your_password.we_will_send_a_password_reset_link_to_your_email':
       'Enter your email address to reset your password. We will send a password reset link to your email',
+  'seats': 'Seats',
+  'automatic': 'Automatic',
+  'color': 'Color',
+  'same_to_same': 'Same to same',
+  'fuel_policy': 'Fuel policy',
+  'rent': 'Rent'
 };
