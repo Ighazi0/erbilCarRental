@@ -28,8 +28,8 @@ class CategoriesCard extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List<CategoryModel> categories = snapshot.data!.docs
-                        .map((m) =>
-                            CategoryModel.fromJson(m.data() as Map, m.id))
+                        .map((m) => CategoryModel.fromJson(
+                            m.data() as Map, m.reference))
                         .toList();
                     return ListView.builder(
                       physics: const ClampingScrollPhysics(),
@@ -40,7 +40,9 @@ class CategoriesCard extends StatelessWidget {
                         CategoryModel category = categories[index];
                         return GestureDetector(
                           onTap: () {
-                            Get.to(() => const FiltredCarScreen());
+                            Get.to(() => FiltredCarScreen(
+                                  categoryData: category,
+                                ));
                           },
                           child: SizedBox(
                             height: 75,

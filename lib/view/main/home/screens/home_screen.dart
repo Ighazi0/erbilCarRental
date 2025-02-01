@@ -1,4 +1,5 @@
 import 'package:erbil/controller/auth_controller.dart';
+import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/car/filtred_car_screen.dart';
 import 'package:erbil/view/main/home/widgets/categories_card.dart';
@@ -37,7 +38,13 @@ class HomeScreen extends StatelessWidget {
               ),
               CustomButton(
                 onPressed: () {
-                  Get.to(() => const FiltredCarScreen());
+                  final mainController = Get.find<MainController>();
+                  if (mainController.pickupLocation.value.docRef == null) {
+                  } else {
+                    Get.to(() => FiltredCarScreen(
+                          locationData: mainController.pickupLocation.value,
+                        ));
+                  }
                 },
                 title: 'search',
               )

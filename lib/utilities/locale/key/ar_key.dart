@@ -41,5 +41,10 @@ const Map<String, String> ar = {
   'color': 'اللون',
   'same_to_same': 'نفس الشيء',
   'fuel_policy': 'سياسة الوقود',
-  'rent': 'استأجر'
+  'rent': 'استأجر',
+  'no_data_found': 'لا يوجد بيانات',
+  'Auto': 'اوتوماتيك',
+  'features': 'سمات',
+  'you_are_not_logged_in_please_sign_in_to_continue':
+      'أنت غير مسجل الدخول. يرجى تسجيل الدخول للمتابعة.'
 };

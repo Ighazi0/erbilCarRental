@@ -40,7 +40,11 @@ class SearchScreen extends StatelessWidget {
                     List<CarModel> cars = snapshot.data!.docs
                         .map((m) => CarModel.fromMap(m.data() as Map, m.id))
                         .toList();
-
+                    if (cars.isEmpty) {
+                      return Center(
+                        child: Text('no_data_found'.tr),
+                      );
+                    }
                     return ListView.separated(
                       separatorBuilder: (context, index) =>
                           const SizedBox(height: 15),

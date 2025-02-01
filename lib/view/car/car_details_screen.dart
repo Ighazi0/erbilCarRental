@@ -119,8 +119,12 @@ class CarDetailsScreen extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      'same_to_same'.tr,
-                      style: const TextStyle(fontSize: 18),
+                      carData.fuelType ?? '',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    Text(
+                      ' / ${'same_to_same'.tr}',
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ],
                 ),
@@ -145,10 +149,21 @@ class CarDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                const Divider(
+                  thickness: 2,
+                  height: 0,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text(
-                  carData.description ?? '',
+                  'features'.tr,
                   style: const TextStyle(fontSize: 18),
-                )
+                ),
+                // Text(
+                //   carData.description ?? '',
+                //   style: const TextStyle(fontSize: 18),
+                // )
               ],
             ),
           )

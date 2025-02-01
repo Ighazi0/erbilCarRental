@@ -2,6 +2,7 @@ import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/utilities/app_functions.dart';
 import 'package:erbil/utilities/custom_ui/custom_bottom_sheet.dart';
+import 'package:erbil/utilities/initial_data.dart';
 import 'package:erbil/view/main/home/widgets/locations_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,9 +44,13 @@ class LocationCard extends StatelessWidget {
                     width: Get.width,
                     padding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 15),
-                    child: Text(mainController.pickupLocation.value.isEmpty
+                    child: Text(mainController.pickupLocation.value.docRef ==
+                            null
                         ? 'select'.tr
-                        : mainController.pickupLocation.value),
+                        : (appLanguage == 'en'
+                                ? mainController.pickupLocation.value.nameEn
+                                : mainController.pickupLocation.value.nameAr) ??
+                            ''),
                   ),
                 ),
               ))

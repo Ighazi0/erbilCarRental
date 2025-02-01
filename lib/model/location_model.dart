@@ -1,31 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class LocationModel {
-  String? nameAr, nameEn, descriptionAr, descriptionEn, id;
+  String? nameAr, nameEn;
+  DocumentReference? docRef;
 
   LocationModel({
-    this.id,
     this.nameAr,
     this.nameEn,
-    this.descriptionAr,
-    this.descriptionEn,
+    this.docRef,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name_ar': nameAr,
       'name_En': nameEn,
-      'descriptionAr': descriptionAr,
-      'descriptionEn': descriptionEn,
     };
   }
 
-  static LocationModel fromMap(Map map, String id) {
+  static LocationModel fromMap(Map map, DocumentReference docRef) {
     return LocationModel(
-      id: id,
-      nameAr: map['name_ar'],
-      nameEn: map['name_en'],
-      descriptionAr: map['descriptionAr'],
-      descriptionEn: map['descriptionEn'],
-    );
+        nameAr: map['name_ar'], nameEn: map['name_en'], docRef: docRef);
   }
 }

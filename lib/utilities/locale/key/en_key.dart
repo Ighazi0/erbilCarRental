@@ -45,5 +45,10 @@ const Map<String, String> en = {
   'color': 'Color',
   'same_to_same': 'Same to same',
   'fuel_policy': 'Fuel policy',
-  'rent': 'Rent'
+  'rent': 'Rent',
+  'no_data_found': 'No data found',
+  'Auto': 'Automatic',
+  'features': 'Features',
+  'you_are_not_logged_in_please_sign_in_to_continue':
+      'You are not logged in. Please sign in to continue'
 };

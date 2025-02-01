@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
           useMaterial3: false,
           appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.white, elevation: 0, centerTitle: false)),
+              iconTheme: IconThemeData(color: Colors.black),
+              backgroundColor: Colors.white,
+              elevation: 0,
+              centerTitle: false)),
       translations: LanguageLocalization(),
       home: const SplashScreen(),
       initialBinding: MainBinding(),

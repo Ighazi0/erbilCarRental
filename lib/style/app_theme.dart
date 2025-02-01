@@ -5,7 +5,7 @@ List<BoxShadow> show = [
   const BoxShadow(color: Colors.black26, blurRadius: 1, spreadRadius: 1)
 ];
 
-Color primaryColor = Colors.black;
+Color primaryColor = const Color(0xffA88D6F);
 Color secondaryColor = Colors.white;
 Color thirdColor = Colors.grey;
 Color skyColor = const Color(0xff87CEEB);

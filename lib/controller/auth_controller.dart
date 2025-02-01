@@ -36,7 +36,7 @@ class AuthController extends GetxController {
   getCurrentUserData(String? uid) async {
     await firebaseFirestore.collection('users').doc(uid).get().then((v) {
       if (v.exists) {
-        userData = UserModel.fromJson(v.data() as Map);
+        userData = UserModel.fromJson(v.data() as Map, v.reference);
       } else {
         signOut();
       }

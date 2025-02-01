@@ -40,5 +40,10 @@ const Map<String, String> ku = {
   'color': 'Color',
   'same_to_same': 'Same to same',
   'fuel_policy': 'Fuel policy',
-  'rent': 'Rent'
+  'rent': 'Rent',
+  'no_data_found': 'Daneyek nehat dîtin',
+  'Auto': 'Automatic',
+  'features': 'Features',
+  'you_are_not_logged_in_please_sign_in_to_continue':
+      'Tu têkeve ne. Ji kerema xwe têkeve da ku bidomînî'
 };

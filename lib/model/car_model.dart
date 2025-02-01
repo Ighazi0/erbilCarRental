@@ -1,7 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CarModel {
-  final String? id, transmission, name, description, status, year, seats, color;
+  final String? id,
+      transmission,
+      name,
+      description,
+      status,
+      year,
+      seats,
+      color,
+      fuelType;
   final List? images;
   final double? price;
   final DocumentReference? location, type, model;
@@ -19,7 +27,8 @@ class CarModel {
       this.status,
       this.seats,
       this.color,
-      this.year});
+      this.year,
+      this.fuelType});
 
   Map<String, dynamic> toMap() {
     return {
@@ -36,6 +45,7 @@ class CarModel {
       'year': year,
       'color': color,
       'seats': seats,
+      'fuelType': fuelType,
     };
   }
 
@@ -54,6 +64,7 @@ class CarModel {
       year: map['year'].toString(),
       seats: map['seats'].toString(),
       color: map['color'],
+      fuelType: map['fuelType'],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:erbil/model/currency_model.dart';
+import 'package:erbil/model/location_model.dart';
 import 'package:erbil/model/weather_model.dart';
 import 'package:erbil/utilities/app_functions.dart';
 import 'package:erbil/utilities/end_points.dart';
@@ -14,10 +15,11 @@ import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 class MainController extends GetxController {
   RxInt mainPageIndex = 0.obs;
   Rx<WeatherModel> weatherData = WeatherModel().obs;
-  Rx<DateTime> pickupDate = DateTime.now().obs, returnDate = DateTime.now().obs;
+  Rx<DateTime> pickupDate = DateTime.now().obs,
+      returnDate = DateTime.now().add(const Duration(days: 7)).obs;
   Rx<CurrencyModel> appCurrency = CurrencyModel(code: 'AED', rate: 1).obs;
 
-  RxString pickupLocation = ''.obs;
+  Rx<LocationModel> pickupLocation = LocationModel().obs;
   final RxList<DateTime> selectedDateRange = <DateTime>[].obs;
 
   @override
@@ -57,7 +59,7 @@ class MainController extends GetxController {
     return Stream.periodic(const Duration(seconds: 1), (_) => DateTime.now());
   }
 
-  selectLocation(String newLocation) {
+  selectLocation(LocationModel newLocation) {
     pickupLocation.value = newLocation;
   }
 

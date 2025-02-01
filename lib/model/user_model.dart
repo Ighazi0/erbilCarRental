@@ -4,6 +4,7 @@ class UserModel {
   String? email, password, firstName, lastName, fullName, gender, uid, image;
   Timestamp? birthday, createdAt;
   bool? deleted, blocked;
+  DocumentReference? docRef;
 
   UserModel({
     this.email,
@@ -18,6 +19,7 @@ class UserModel {
     this.createdAt,
     this.deleted = false,
     this.blocked = false,
+    this.docRef,
   });
 
   Map<String, dynamic> toJson() {
@@ -37,7 +39,7 @@ class UserModel {
     };
   }
 
-  factory UserModel.fromJson(Map json) {
+  factory UserModel.fromJson(Map json, DocumentReference docRef) {
     return UserModel(
       email: json['email'],
       password: json['password'],
@@ -49,6 +51,7 @@ class UserModel {
       image: json['image'],
       birthday: json['birthday'],
       createdAt: json['created_at'],
+      docRef: docRef,
       deleted: json['deleted'] ?? false,
       blocked: json['blocked'] ?? false,
     );

@@ -18,7 +18,7 @@ class LocationsBottomSheet extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<LocationModel> locations = snapshot.data!.docs
-                  .map((m) => LocationModel.fromMap(m.data(), m.id))
+                  .map((m) => LocationModel.fromMap(m.data(), m.reference))
                   .toList();
               if (locations.isEmpty) {
                 return Align(
@@ -54,7 +54,7 @@ class LocationsBottomSheet extends StatelessWidget {
                           return ListTile(
                             onTap: () {
                               AppFunctions().onPressedWithHaptic(() {
-                                onTap(location.nameEn);
+                                onTap(location);
                               });
                             },
                             title: Text(
