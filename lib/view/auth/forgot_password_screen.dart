@@ -1,4 +1,5 @@
 import 'package:erbil/controller/auth_controller.dart';
+import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                     },
                   )),
               Obx(() => authController.sendingLink.value
-                  ? const CircularProgressIndicator()
+                  ? const CircularProgressIndicator(
+                      color: primaryColor,
+                    )
                   : Hero(
                       tag: 'auth',
                       child: CustomButton(

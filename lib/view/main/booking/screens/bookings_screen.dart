@@ -3,6 +3,7 @@ import 'package:erbil/controller/auth_controller.dart';
 import 'package:erbil/model/order_model.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/auth/sign_in_screen.dart';
+import 'package:erbil/view/main/booking/widgets/order_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,19 +20,6 @@ class BookingsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Row(
-            //   children: [
-            //     Flexible(
-            //       child: CupertinoSearchTextField(
-            //         borderRadius: BorderRadius.circular(25),
-            //         prefixInsets: const EdgeInsets.only(left: 15),
-            //         padding: const EdgeInsets.symmetric(
-            //             horizontal: 15, vertical: 12.5),
-            //         placeholder: 'search'.tr,
-            //       ),
-            //     ),
-            //   ],
-            // ),
             authController.userData == null
                 ? Center(
                     child: Column(
@@ -80,10 +68,10 @@ class BookingsScreen extends StatelessWidget {
                             itemCount: orders.length,
                             physics: const ClampingScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return null;
-
-                              // CarModel car = cars[index];
-                              // return CarCard(carData: car);
+                              OrderModel order = orders[index];
+                              return OrderCard(
+                                orderData: order,
+                              );
                             },
                           );
                         }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:erbil/model/app_data_model.dart';
 import 'package:erbil/model/user_model.dart';
+import 'package:erbil/utilities/custom_ui/custom_snackbar.dart';
 import 'package:erbil/view/main/screens/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -49,33 +50,43 @@ class AuthController extends GetxController {
 
   signInWithEmailAndPassword() async {
     signingIn.value = true;
-    await firebaseAuth.signInWithEmailAndPassword(
-      email: email.text,
-      password: password.text,
-    );
-    String uid = firebaseAuth.currentUser?.uid ?? '';
-    await getCurrentUserData(uid);
-    getStorage.write('uid', uid);
-    Get.offAll(() => const MainScreen());
-    clearData();
+    try {
+      await firebaseAuth.signInWithEmailAndPassword(
+        email: email.text,
+        password: password.text,
+      );
+      String uid = firebaseAuth.currentUser?.uid ?? '';
+      await getCurrentUserData(uid);
+      getStorage.write('uid', uid);
+      Get.offAll(() => const MainScreen());
+      clearData();
+    } catch (e) {
+      CustomSnackbar().showErrorSnackbar('error');
+    }
+    signingIn.value = false;
   }
 
   registerWithEmailAndPassword() async {
     signingUp.value = true;
-    await firebaseAuth.createUserWithEmailAndPassword(
-      email: email.text,
-      password: password.text,
-    );
-    String uid = firebaseAuth.currentUser?.uid ?? '';
-    userData = UserModel(
-        uid: uid,
+    try {
+      await firebaseAuth.createUserWithEmailAndPassword(
         email: email.text,
         password: password.text,
-        fullName: name.text);
-    Get.offAll(() => const MainScreen());
-    createUserAccount(uid, userData!);
-    getStorage.write('uid', uid);
-    clearData();
+      );
+      String uid = firebaseAuth.currentUser?.uid ?? '';
+      userData = UserModel(
+          uid: uid,
+          email: email.text,
+          password: password.text,
+          fullName: name.text);
+      Get.offAll(() => const MainScreen());
+      createUserAccount(uid, userData!);
+      getStorage.write('uid', uid);
+      clearData();
+    } catch (e) {
+      CustomSnackbar().showErrorSnackbar('error');
+    }
+    signingIn.value = false;
   }
 
   deleteAccount(String uid) async {
@@ -90,7 +101,11 @@ class AuthController extends GetxController {
 
   resetPassword() async {
     sendingLink.value = true;
-    await firebaseAuth.sendPasswordResetEmail(email: email.text);
+    try {
+      await firebaseAuth.sendPasswordResetEmail(email: email.text);
+    } catch (e) {
+      CustomSnackbar().showErrorSnackbar('error');
+    }
     clearData();
   }
 
@@ -98,8 +113,6 @@ class AuthController extends GetxController {
     email.clear();
     name.clear();
     password.clear();
-    signingIn.value = false;
-    signingUp.value = false;
     deletingAccount.value = false;
     sendingLink.value = false;
   }

@@ -1,4 +1,5 @@
 import 'package:erbil/controller/auth_controller.dart';
+import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/app/widgets/custom_text_field.dart';
 import 'package:erbil/view/auth/forgot_password_screen.dart';
@@ -69,19 +70,23 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => authController.signingIn.value
-                    ? const CircularProgressIndicator()
-                    : Hero(
-                        tag: 'auth',
-                        child: CustomButton(
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              authController.signInWithEmailAndPassword();
-                            }
-                          },
-                          title: 'sign_in',
-                        ),
-                      )),
+                Obx(() => Center(
+                      child: authController.signingIn.value
+                          ? const CircularProgressIndicator(
+                              color: primaryColor,
+                            )
+                          : Hero(
+                              tag: 'auth',
+                              child: CustomButton(
+                                onPressed: () {
+                                  if (formKey.currentState!.validate()) {
+                                    authController.signInWithEmailAndPassword();
+                                  }
+                                },
+                                title: 'sign_in',
+                              ),
+                            ),
+                    )),
                 const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

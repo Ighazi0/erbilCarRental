@@ -4,8 +4,8 @@ class OrderModel {
   final DocumentReference? car;
   final Timestamp? createdAt;
   final int? days;
-  final DateTime? from;
-  final DateTime? to;
+  final Timestamp? from;
+  final Timestamp? to;
   final int? totalPrice;
   final DocumentReference? user;
 
@@ -24,8 +24,8 @@ class OrderModel {
       car: json['car'],
       createdAt: json['createdAt'],
       days: json['days'],
-      from: DateTime.parse(json['from']),
-      to: DateTime.parse(json['to']),
+      from: json['from'],
+      to: json['to'],
       totalPrice: json['totalPrice'],
       user: json['user'],
     );

@@ -1,4 +1,5 @@
 import 'package:erbil/controller/auth_controller.dart';
+import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/app/widgets/custom_text_field.dart';
 import 'package:erbil/view/auth/sign_in_screen.dart';
@@ -69,7 +70,9 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 Obx(
                   () => authController.signingUp.value
-                      ? const CircularProgressIndicator()
+                      ? const CircularProgressIndicator(
+                          color: primaryColor,
+                        )
                       : Hero(
                           tag: 'auth',
                           child: CustomButton(
