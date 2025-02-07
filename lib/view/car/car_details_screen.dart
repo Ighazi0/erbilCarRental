@@ -12,15 +12,17 @@ class CarDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainController = Get.find<MainController>();
     return Scaffold(
       bottomNavigationBar: SafeArea(
         child: Container(
           height: 75,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: CustomButton(
               title: '',
               titleWidget: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -29,16 +31,16 @@ class CarDetailsScreen extends StatelessWidget {
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
-                          fontSize: 18),
+                          fontSize: 16),
                     ),
                     Obx(() {
-                      var c = Get.find<MainController>().appCurrency.value;
+                      var c = mainController.appCurrency.value;
                       return Text(
-                        '${c.code} ${((carData.price ?? 0) * (c.rate ?? 0)).toStringAsFixed(2).replaceAll('.0', '')}',
+                        '${c.code} ${(((carData.price ?? 0) * (c.rate ?? 0)) * mainController.calculateDays()).toStringAsFixed(2).replaceAll('.0', '')} / ${mainController.calculateDays()} ${'days'.tr}',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            fontSize: 18),
+                            fontSize: 16),
                       );
                     })
                   ],

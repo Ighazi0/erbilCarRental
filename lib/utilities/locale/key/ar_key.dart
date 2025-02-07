@@ -25,6 +25,7 @@ const Map<String, String> ar = {
   'ku': 'Kurd',
   'are_you_sure_to_sign_out': 'هل أنت متأكد من تسجيل الخروج؟',
   'day': 'يوم',
+  'days': 'ايام',
   'currency': 'العملة',
   'email_address': 'البريد الإلكتروني',
   'please_enter_your_email': 'يرجى إدخال بريدك الإلكتروني',

@@ -25,6 +25,7 @@ const Map<String, String> ku = {
   'ku': 'Kurd',
   'are_you_sure_to_sign_out': 'Tu pirr bawerîyî ku derkeve?',
   'day': 'roj',
+  'days': 'roj',
   'currency': 'diravcins',
   'email_address': 'Navnîşa E-nameyê',
   'please_enter_your_email': 'Ji kerema xwe navnîşa E-nameya xwe binivîse',

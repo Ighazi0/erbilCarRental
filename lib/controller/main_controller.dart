@@ -18,7 +18,6 @@ class MainController extends GetxController {
   Rx<DateTime> pickupDate = DateTime.now().obs,
       returnDate = DateTime.now().add(const Duration(days: 7)).obs;
   Rx<CurrencyModel> appCurrency = CurrencyModel(code: 'AED', rate: 1).obs;
-
   Rx<LocationModel> pickupLocation = LocationModel().obs;
   final RxList<DateTime> selectedDateRange = <DateTime>[].obs;
 
@@ -27,6 +26,10 @@ class MainController extends GetxController {
     fetchWeather();
     getSavedCurrency();
     super.onInit();
+  }
+
+  int calculateDays() {
+    return (returnDate.value.difference(pickupDate.value)).inDays;
   }
 
   getSavedCurrency() {

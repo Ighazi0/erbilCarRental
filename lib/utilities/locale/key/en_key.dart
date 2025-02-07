@@ -25,6 +25,7 @@ const Map<String, String> en = {
   'ku': 'Kurd',
   'are_you_sure_to_sign_out': 'Are you sure to sign out?',
   'day': 'day',
+  'days': 'days',
   'currency': 'Currency',
   'email_address': 'Email Address',
   'please_enter_your_email': 'Please enter your email',
