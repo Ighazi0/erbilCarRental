@@ -1,5 +1,6 @@
 import 'package:erbil/controller/auth_controller.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
+import 'package:erbil/view/app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,26 +35,21 @@ class ForgotPasswordScreen extends StatelessWidget {
                 style: const TextStyle(fontSize: 16),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                child: TextFormField(
-                  controller: authController.email,
-                  validator: (value) {
-                    if (value == null ||
-                        value.isEmpty ||
-                        !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                            .hasMatch(value)) {
-                      return 'please_enter_your_email'.tr;
-                    }
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: CustomTextField(
+                    labelText: 'email_address',
+                    controller: authController.email,
+                    validator: (value) {
+                      if (value == null ||
+                          value.isEmpty ||
+                          !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                              .hasMatch(value)) {
+                        return 'please_enter_your_email'.tr;
+                      }
 
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'email_address'.tr,
-                    border: const OutlineInputBorder(),
-                    prefixIcon: const Icon(Icons.email),
-                  ),
-                ),
-              ),
+                      return null;
+                    },
+                  )),
               Obx(() => authController.sendingLink.value
                   ? const CircularProgressIndicator()
                   : Hero(

@@ -7,6 +7,6 @@ List<BoxShadow> show = [
 
 const primaryColor = Color(0xffA88D6F);
 const secondaryColor = Colors.white;
-const thirdColor = Colors.grey;
+const thirdColor = Colors.black;
 const skyColor = Color(0xff87CEEB);
 const nightSkyColor = Color(0xff191970);

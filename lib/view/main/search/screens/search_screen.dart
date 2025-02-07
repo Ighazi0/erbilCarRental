@@ -5,9 +5,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
@@ -20,6 +26,10 @@ class SearchScreen extends StatelessWidget {
               children: [
                 Flexible(
                   child: CupertinoSearchTextField(
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                    controller: controller,
                     borderRadius: BorderRadius.circular(25),
                     prefixInsets: const EdgeInsets.only(left: 15),
                     padding: const EdgeInsets.symmetric(
@@ -40,7 +50,27 @@ class SearchScreen extends StatelessWidget {
                     List<CarModel> cars = snapshot.data!.docs
                         .map((m) => CarModel.fromMap(m.data() as Map, m.id))
                         .toList();
-                    if (cars.isEmpty) {
+                    List<CarModel> result = cars
+                        .where((w) =>
+                            (w.name?.removeAllWhitespace.toLowerCase().contains(controller.text.removeAllWhitespace.toLowerCase()) ?? false) ||
+                            (w.year?.removeAllWhitespace.toLowerCase().contains(controller.text.removeAllWhitespace.toLowerCase()) ??
+                                false) ||
+                            (w.transmission?.removeAllWhitespace
+                                    .toLowerCase()
+                                    .contains(controller.text.removeAllWhitespace
+                                        .toLowerCase()) ??
+                                false) ||
+                            (w.color?.removeAllWhitespace.toLowerCase().contains(
+                                    controller.text.removeAllWhitespace
+                                        .toLowerCase()) ??
+                                false) ||
+                            (w.fuelType?.removeAllWhitespace
+                                    .toLowerCase()
+                                    .contains(controller.text.removeAllWhitespace
+                                        .toLowerCase()) ??
+                                false))
+                        .toList();
+                    if (result.isEmpty) {
                       return Center(
                         child: Text('no_data_found'.tr),
                       );
@@ -49,10 +79,10 @@ class SearchScreen extends StatelessWidget {
                       separatorBuilder: (context, index) =>
                           const SizedBox(height: 15),
                       padding: const EdgeInsets.only(top: 10),
-                      itemCount: cars.length,
+                      itemCount: result.length,
                       physics: const ClampingScrollPhysics(),
                       itemBuilder: (context, index) {
-                        CarModel car = cars[index];
+                        CarModel car = result[index];
                         return CarCard(carData: car);
                       },
                     );

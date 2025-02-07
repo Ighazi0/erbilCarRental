@@ -46,7 +46,7 @@ class ChangeCurrency extends StatelessWidget {
                                         .code ==
                                     m.code.toString()
                                 ? secondaryColor
-                                : primaryColor),
+                                : Colors.black),
                       ),
                     ),
                   ],

@@ -32,6 +32,7 @@ const Map<String, String> en = {
   'password': 'Password',
   'password_must_be_at_least_6_characters':
       'Password must be at least 6 characters',
+  'please_enter_your_name': 'Please enter your name',
   'dont_have_an_account': 'Don\'t have an account?',
   'already_have_an_account': 'Already have an account?',
   'full_name': 'Full Name',
@@ -53,6 +54,20 @@ const Map<String, String> en = {
   'you_are_not_logged_in_please_sign_in_to_continue':
       'You are not logged in. Please sign in to continue',
   "Leather": "Leather",
+  "checkout": "Checkout",
   "Child_Safety_Locks": "Child Safety Locks",
-  "Vanity_Mirror": "Vanity Mirror"
+  "Vanity_Mirror": "Vanity Mirror",
+  'traffic_fines': 'Traffic Fines',
+  "traffic_fines_1":
+      "All drivers have to adhere to the rules and regulations of the road, whether that’s speed restrictions, parking, or lane discipline. There are strict traffic rules in place in the UAE, and at Erbil we urge all our customers to abide by these regulations strictly. The result of non-compliance can be heavy fines. The most common traffic fines recorded based on the data available to Erbil are:",
+  "traffic_fines_2": '- Exceeding the speed limit',
+  "traffic_fines_3": '- Failure to pay for parking',
+  "traffic_fines_4": '- Poor Lane discipline',
+  "traffic_fines_5": '- Failure to follow Traffic Signals',
+  "traffic_fines_6": '- Failure to wear seat belts',
+  "traffic_fines_7": '- Using a phone while driving',
+  'traffic_fines_8':
+      'While we are happy to deal with the logistics of any fines incurred while renting a Erbil vehicle, that cost will be passed onto the customer, and a 12% Admin Fee is also applicable on all Traffic Fines for this service. We will invoice these charges as and when they get posted by the relevant authorities, which may mean that there is a delay between the violation date and time to the customer being notified about it.',
+  "traffic_fines_9":
+      "Erbil is not responsible for any delays in invoicing or accuracy of the fines that may be a result of the information received from various government systems.",
 };

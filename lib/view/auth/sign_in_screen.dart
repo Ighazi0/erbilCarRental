@@ -1,5 +1,6 @@
 import 'package:erbil/controller/auth_controller.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
+import 'package:erbil/view/app/widgets/custom_text_field.dart';
 import 'package:erbil/view/auth/forgot_password_screen.dart';
 import 'package:erbil/view/auth/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -30,13 +31,9 @@ class SignInScreen extends StatelessWidget {
                         fontSize: 40, fontWeight: FontWeight.bold),
                   ),
                 ),
-                TextFormField(
+                CustomTextField(
+                  labelText: 'email_address',
                   controller: authController.email,
-                  decoration: InputDecoration(
-                    labelText: 'email_address'.tr,
-                    border: const OutlineInputBorder(),
-                    prefixIcon: const Icon(Icons.email),
-                  ),
                   validator: (value) {
                     if (value == null ||
                         value.isEmpty ||
@@ -49,14 +46,9 @@ class SignInScreen extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 20),
-                TextFormField(
+                CustomTextField(
+                  labelText: 'password',
                   controller: authController.password,
-                  decoration: InputDecoration(
-                    labelText: 'password'.tr,
-                    border: const OutlineInputBorder(),
-                    prefixIcon: const Icon(Icons.lock),
-                  ),
-                  obscureText: true,
                   validator: (value) {
                     if (value!.length < 6) {
                       return 'password_must_be_at_least_6_characters'.tr;

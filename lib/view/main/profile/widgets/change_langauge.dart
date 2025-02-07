@@ -36,7 +36,7 @@ class ChangeLangauge extends StatelessWidget {
                         style: TextStyle(
                             color: appLanguage == m.keys.first
                                 ? secondaryColor
-                                : primaryColor),
+                                : Colors.black),
                       ),
                     ),
                   ],

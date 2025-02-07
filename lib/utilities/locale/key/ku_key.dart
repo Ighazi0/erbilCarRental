@@ -45,9 +45,24 @@ const Map<String, String> ku = {
   'no_data_found': 'Daneyek nehat dîtin',
   'Auto': 'Automatic',
   'features': 'Features',
+  "please_enter_your_name": "Ji kerema xwe navê xwe binivîse",
   'you_are_not_logged_in_please_sign_in_to_continue':
       'Tu têkeve ne. Ji kerema xwe têkeve da ku bidomînî',
   "Leather": "Derî",
+  "checkout": "Daxistinê",
   "Child_Safety_Locks": "Kilîtên ewlehî yên zarokan",
-  "Vanity_Mirror": "Nîvê jêhatî"
+  "Vanity_Mirror": "Nîvê jêhatî",
+  "traffic_fines": "Serêkevanên trafîkê",
+  "traffic_fines_1":
+      "Hemû ajokêr dixwazin rêzê rêgez û qanûnên rêyan bigirin, bê ku ev berê de xizane, parking an bîrê rêyan heye. Di UAE de qanûnên trafîkê hene ku zêdetir in, û li Erbil de em ji hemû xerîdarên me dixwazin ku vêqanûnên bi cih bikin. Gava bêbîvêje, encama vê dikare dibe serêkevanên giran. Serêkevanên trafîkê yên herî zêde, li gorî daneyên ku Erbil wergirtine, ev in:",
+  "traffic_fines_2": "- Derbasî sînorê lezêbûnê",
+  "traffic_fines_3": "- Ne dayîna bêcî parkingê",
+  "traffic_fines_4": "- Rewşa nexweş a rêyan",
+  "traffic_fines_5": "- Ne şopandinê bi hêsan a hêzên trafîkê",
+  "traffic_fines_6": "- Ne xebitandina belta ewlehî",
+  "traffic_fines_7": "- Bi destê xwe telefonê bikaranîn di ajotê de",
+  "traffic_fines_8":
+      "Gava ku em bi dildarî dibin ku serêkevanên trafîkê yên ku di dema rentalê Erbil de têne bikaranîn, ew nirx dê di ser xerîdar de bête dîtin, û 12% Xercê Adminê jî ser hemû serêkevanên trafîkê ji bo vê xizmetê dê were zêde kirin. Ev nirxên dibin gava ku ew ji hêza zanistî têne belav kirin, ku dikare vê bibe demek dereng di navbera demek xetere û dema ku xerîdar vê zaninê digihîjin.",
+  "traffic_fines_9":
+      "Erbil ne mesûl e ji ber vê derengiyê di danûstandinê de an jî rastiyê serêkevanan ku dikare ji ber agahiyên hêza hukûmetê bê."
 };

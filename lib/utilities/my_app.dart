@@ -1,3 +1,4 @@
+import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/utilities/custom_binding.dart';
 import 'package:erbil/utilities/initial_data.dart';
 import 'package:erbil/utilities/locale/app_localization.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
           useMaterial3: false,
           appBarTheme: const AppBarTheme(
-              iconTheme: IconThemeData(color: Colors.black),
+              iconTheme: IconThemeData(color: primaryColor),
               backgroundColor: Colors.white,
               elevation: 0,
               centerTitle: false)),

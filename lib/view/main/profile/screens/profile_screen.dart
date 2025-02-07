@@ -1,10 +1,12 @@
 import 'package:erbil/controller/auth_controller.dart';
 import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/style/app_theme.dart';
+import 'package:erbil/utilities/app_functions.dart';
 import 'package:erbil/utilities/custom_ui/custom_bottom_sheet.dart';
 import 'package:erbil/utilities/custom_ui/custom_dialog.dart';
 import 'package:erbil/utilities/initial_data.dart';
 import 'package:erbil/view/auth/sign_in_screen.dart';
+import 'package:erbil/view/main/profile/screens/traffic_fines.dart';
 import 'package:erbil/view/main/profile/widgets/change_currency.dart';
 import 'package:erbil/view/main/profile/widgets/change_langauge.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +35,11 @@ class ProfileScreen extends StatelessWidget {
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              CustomBottomSheet().simpleBottomSheet(
-                const ChangeCurrency(),
-              );
+              AppFunctions().onPressedWithHaptic(() {
+                CustomBottomSheet().simpleBottomSheet(
+                  const ChangeCurrency(),
+                );
+              });
             },
             trailing: Obx(() => Container(
                   padding:
@@ -64,35 +68,55 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
-              CustomBottomSheet().simpleBottomSheet(
-                const ChangeLangauge(),
-              );
+              AppFunctions().onPressedWithHaptic(() {
+                CustomBottomSheet().simpleBottomSheet(
+                  const ChangeLangauge(),
+                );
+              });
             },
             leading: const Icon(Icons.language),
           ),
           ListTile(
+            title: Text(
+              'traffic_fines'.tr,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              color: primaryColor,
+            ),
             onTap: () {
-              if (authController.userData == null) {
-                Get.to(() => const SignInScreen());
-              } else {
-                CustomDialog().showSureDialog(
-                    'are_you_sure_to_sign_out', '', 'yes', onPressed: () {
-                  authController.signOut();
-                });
-              }
+              AppFunctions().onPressedWithHaptic(() {
+                Get.to(() => const TrafficFines());
+              });
+            },
+            leading: const Icon(Icons.directions),
+          ),
+          ListTile(
+            onTap: () {
+              AppFunctions().onPressedWithHaptic(() {
+                if (authController.userData == null) {
+                  Get.to(() => const SignInScreen());
+                } else {
+                  CustomDialog().showSureDialog(
+                      'are_you_sure_to_sign_out', '', 'yes', onPressed: () {
+                    authController.signOut();
+                  });
+                }
+              });
             },
             title: Text(
               authController.userData == null ? 'sign_in'.tr : 'sign_out'.tr,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: authController.userData == null
-                      ? Colors.black
+                      ? primaryColor
                       : Colors.red),
             ),
             leading: Icon(
               authController.userData == null ? Icons.login : Icons.logout,
               color:
-                  authController.userData == null ? Colors.black : Colors.red,
+                  authController.userData == null ? primaryColor : Colors.red,
             ),
           )
         ],

@@ -3,6 +3,7 @@ import 'package:erbil/model/car_model.dart';
 import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/app/widgets/custom_image.dart';
+import 'package:erbil/view/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ class CarDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final mainController = Get.find<MainController>();
     return Scaffold(
+      appBar: AppBar(),
       bottomNavigationBar: SafeArea(
         child: Container(
           height: 75,
@@ -46,7 +48,9 @@ class CarDetailsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              onPressed: () {}),
+              onPressed: () {
+                Get.to(() => const CheckoutScreen());
+              }),
         ),
       ),
       body: ListView(
