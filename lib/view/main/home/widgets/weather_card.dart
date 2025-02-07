@@ -22,11 +22,11 @@ class WeatherCard extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 5),
               decoration: BoxDecoration(
                   borderRadius: borderRadius,
-                  color: DateTime.now().hour > 18 ? nightSkyColor : skyColor,
+                  color: DateTime.now().hour > 17 ? nightSkyColor : skyColor,
                   boxShadow: [
                     BoxShadow(
                         color:
-                            DateTime.now().hour > 18 ? nightSkyColor : skyColor,
+                            DateTime.now().hour > 17 ? nightSkyColor : skyColor,
                         blurRadius: 3,
                         spreadRadius: 2)
                   ]),

@@ -56,13 +56,13 @@ class CarDetailsScreen extends StatelessWidget {
                 children: carData.images
                         ?.map((m) => CustomImage(
                               url: m,
-                              boxFit: BoxFit.fill,
+                              boxFit: BoxFit.fitWidth,
                             ))
                         .toList() ??
                     [],
               )),
           Padding(
-            padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -86,27 +86,30 @@ class CarDetailsScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Wrap(
-                    spacing: 10,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 7.5,
                     children: [
                       Text(
                         carData.year.toString(),
-                        style: const TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 16),
                       ),
                       const Icon(
                         Icons.fiber_manual_record_rounded,
-                        size: 20,
+                        color: primaryColor,
+                        size: 15,
                       ),
                       Text(
                         '${carData.seats} ${'seats'.tr}',
-                        style: const TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 16),
                       ),
                       const Icon(
                         Icons.fiber_manual_record_rounded,
-                        size: 20,
+                        size: 15,
+                        color: primaryColor,
                       ),
                       Text(
                         carData.transmission?.tr ?? '',
-                        style: const TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -134,11 +137,12 @@ class CarDetailsScreen extends StatelessWidget {
                     children: [
                       Text(
                         'color'.tr,
-                        style: const TextStyle(fontSize: 18),
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       Container(
-                        width: 30,
-                        height: 30,
+                        width: 25,
+                        height: 25,
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                             borderRadius: borderRadius,
@@ -149,21 +153,39 @@ class CarDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Divider(
-                  thickness: 2,
-                  height: 0,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
                 Text(
                   'features'.tr,
-                  style: const TextStyle(fontSize: 18),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                // Text(
-                //   carData.description ?? '',
-                //   style: const TextStyle(fontSize: 18),
-                // )
+                const SizedBox(
+                  height: 10,
+                ),
+                Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 7.5,
+                    runSpacing: 5,
+                    children:
+                        List.generate(carData.features?.length ?? 0, (index) {
+                      return Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            carData.features?[index].toString().tr ?? '',
+                          ),
+                          if (index != ((carData.features?.length ?? 0) - 1))
+                            const SizedBox(
+                              width: 7.5,
+                            ),
+                          if (index != ((carData.features?.length ?? 0) - 1))
+                            const Icon(
+                              Icons.fiber_manual_record_rounded,
+                              color: primaryColor,
+                              size: 15,
+                            )
+                        ],
+                      );
+                    }))
               ],
             ),
           )

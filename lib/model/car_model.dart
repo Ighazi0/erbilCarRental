@@ -1,70 +1,121 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CarModel {
-  final String? id,
-      transmission,
-      name,
-      description,
-      status,
-      year,
-      seats,
-      color,
-      fuelType;
-  final List? images;
-  final double? price;
-  final DocumentReference? location, type, model;
+  final String? id;
+  final String? color;
+  final DocumentReference? location;
+  final int? cityMpg;
+  final int? cylinders;
+  final String? status;
+  final String? fuelType;
+  final DocumentReference? brand;
+  final String? engineSize;
+  final List<String>? images;
+  final Timestamp? createdAt;
+  final int? seats;
+  final String? transmission;
+  final String? mileage;
+  final String? name;
+  final String? driverType;
+  final DocumentReference? type;
+  final String? year;
+  final String? condition;
+  final DocumentReference? model;
+  final int? doors;
+  final int? price;
+  final List<String>? features;
+  final int? highwayMpg;
+  final String? description;
 
-  CarModel(
-      {this.id,
-      this.images,
-      this.transmission,
-      this.price,
-      this.name,
-      this.description,
-      this.location,
-      this.model,
-      this.type,
-      this.status,
-      this.seats,
-      this.color,
-      this.year,
-      this.fuelType});
+  CarModel({
+    this.color,
+    this.location,
+    this.cityMpg,
+    this.cylinders,
+    this.status,
+    this.fuelType,
+    this.brand,
+    this.engineSize,
+    this.images,
+    this.createdAt,
+    this.seats,
+    this.transmission,
+    this.mileage,
+    this.name,
+    this.driverType,
+    this.type,
+    this.year,
+    this.condition,
+    this.model,
+    this.doors,
+    this.price,
+    this.features,
+    this.highwayMpg,
+    this.description,
+    this.id,
+  });
+
+  factory CarModel.fromMap(Map data, String id) {
+    return CarModel(
+      id: id,
+      color: data['color'],
+      location: data['location'],
+      cityMpg: data['cityMpg'],
+      cylinders: data['cylinders'],
+      status: data['status'],
+      fuelType: data['fuelType'],
+      brand: data['brand'],
+      engineSize: data['engineSize'],
+      images: data['images'] != null ? List<String>.from(data['images']) : null,
+      seats: data['seats'],
+      transmission: data['transmission'],
+      mileage: data['mileage'],
+      name: data['name'],
+      driverType: data['driverType'],
+      type: data['type'],
+      year: data['year'].toString(),
+      condition: data['condition'],
+      model: data['model'],
+      doors: data['doors'],
+      price: data['price'],
+      features: data['features'] != null
+          ? (data['features'] as Map<String, dynamic>)
+              .values
+              .expand((value) => List<String>.from(value))
+              .toList()
+          : null,
+      highwayMpg: data['highwayMpg'],
+      description: data['description'],
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'images': images,
-      'transmission': transmission,
-      'price': price,
-      'name': name,
-      'description': description,
-      'location': location,
-      'model': model,
-      'type': type,
-      'status': status,
-      'year': year,
       'color': color,
-      'seats': seats,
+      'location': location,
+      'cityMpg': cityMpg,
+      'cylinders': cylinders,
+      'status': status,
       'fuelType': fuelType,
+      'brand': brand,
+      'engineSize': engineSize,
+      'images': images,
+      'createdAt': createdAt,
+      'seats': seats,
+      'transmission': transmission,
+      'mileage': mileage,
+      'name': name,
+      'driverType': driverType,
+      'type': type,
+      'year': year,
+      'condition': condition,
+      'model': model,
+      'doors': doors,
+      'price': price,
+      'features': features,
+      'highwayMpg': highwayMpg,
+      'description': description,
     };
-  }
-
-  factory CarModel.fromMap(Map map, String id) {
-    return CarModel(
-      id: id,
-      images: map['images'],
-      transmission: map['transmission'],
-      price: double.tryParse(map['price'].toString()),
-      name: map['name'],
-      description: map['description'],
-      location: map['location'],
-      model: map['model'],
-      type: map['type'],
-      status: map['status'],
-      year: map['year'].toString(),
-      seats: map['seats'].toString(),
-      color: map['color'],
-      fuelType: map['fuelType'],
-    );
   }
 }

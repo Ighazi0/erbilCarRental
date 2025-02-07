@@ -50,5 +50,8 @@ const Map<String, String> en = {
   'Auto': 'Automatic',
   'features': 'Features',
   'you_are_not_logged_in_please_sign_in_to_continue':
-      'You are not logged in. Please sign in to continue'
+      'You are not logged in. Please sign in to continue',
+  "Leather": "Leather",
+  "Child_Safety_Locks": "Child Safety Locks",
+  "Vanity_Mirror": "Vanity Mirror"
 };

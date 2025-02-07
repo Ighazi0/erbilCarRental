@@ -44,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                       borderRadius: borderRadius, color: primaryColor),
                   child: Text(
                     Get.find<MainController>().appCurrency.value.code ?? '',
-                    style: TextStyle(color: secondaryColor),
+                    style: const TextStyle(color: secondaryColor),
                   ),
                 )),
             leading: const Icon(Icons.currency_exchange),
@@ -60,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                   borderRadius: borderRadius, color: primaryColor),
               child: Text(
                 appLanguage.tr,
-                style: TextStyle(color: secondaryColor),
+                style: const TextStyle(color: secondaryColor),
               ),
             ),
             onTap: () {

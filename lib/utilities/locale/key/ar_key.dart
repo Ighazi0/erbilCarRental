@@ -46,5 +46,8 @@ const Map<String, String> ar = {
   'Auto': 'اوتوماتيك',
   'features': 'سمات',
   'you_are_not_logged_in_please_sign_in_to_continue':
-      'أنت غير مسجل الدخول. يرجى تسجيل الدخول للمتابعة.'
+      'أنت غير مسجل الدخول. يرجى تسجيل الدخول للمتابعة.',
+  "Leather": "جلد",
+  "Child_Safety_Locks": "أقفال أمان للأطفال",
+  "Vanity_Mirror": "مرآة الزينة"
 };

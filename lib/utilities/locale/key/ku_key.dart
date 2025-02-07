@@ -45,5 +45,8 @@ const Map<String, String> ku = {
   'Auto': 'Automatic',
   'features': 'Features',
   'you_are_not_logged_in_please_sign_in_to_continue':
-      'Tu têkeve ne. Ji kerema xwe têkeve da ku bidomînî'
+      'Tu têkeve ne. Ji kerema xwe têkeve da ku bidomînî',
+  "Leather": "Derî",
+  "Child_Safety_Locks": "Kilîtên ewlehî yên zarokan",
+  "Vanity_Mirror": "Nîvê jêhatî"
 };

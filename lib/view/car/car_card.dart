@@ -18,59 +18,90 @@ class CarCard extends StatelessWidget {
         Get.to(() => CarDetailsScreen(carData: carData));
       },
       child: Container(
+        padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
             borderRadius: borderRadius, boxShadow: show, color: Colors.white),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(25)),
-              child: SizedBox(
-                  height: 175,
-                  width: Get.width,
-                  child: CustomImage(
-                    url: carData.images?.firstOrNull ?? '',
-                    boxFit: BoxFit.fill,
-                  )),
+            Text(
+              carData.name ?? '',
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            ListTile(
-              title: Text(carData.name ?? ''),
-              subtitle: Text(
-                carData.year ?? '',
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Divider(
-                thickness: 1,
-                height: 0,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Icon(Icons.local_gas_station),
-                      const SizedBox(
-                        width: 5,
+                      Text(
+                        '${carData.seats} ${'doors'.tr} | ${carData.seats} ${'seats'.tr}',
+                        style: const TextStyle(fontSize: 13),
                       ),
-                      Text('same_to_same'.tr),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        carData.transmission?.tr ?? '',
+                        style: const TextStyle(fontSize: 13),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        carData.year ?? '',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 13),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 25,
+                        height: 25,
+                        decoration: BoxDecoration(
+                            borderRadius: borderRadius,
+                            color: Color(int.tryParse(
+                                    '0xff${carData.color?.replaceFirst('#', '')}') ??
+                                00000)),
+                      ),
                     ],
                   ),
-                  Obx(() {
-                    var c = Get.find<MainController>().appCurrency.value;
-                    return Text(
-                      '${c.code} ${((carData.price ?? 0) * (c.rate ?? 0)).toStringAsFixed(2).replaceAll('.0', '')}/${'day'.tr}',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    );
-                  })
-                ],
-              ),
+                ),
+                SizedBox(
+                    height: 125,
+                    width: Get.width / 2.25,
+                    child: CustomImage(
+                      url: carData.images?.firstOrNull ?? '',
+                      boxFit: BoxFit.fitWidth,
+                    )),
+              ],
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.local_gas_station),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text('same_to_same'.tr),
+                  ],
+                ),
+                Obx(() {
+                  var c = Get.find<MainController>().appCurrency.value;
+                  return Text(
+                    '${c.code} ${((carData.price ?? 0) * (c.rate ?? 0)).toStringAsFixed(2).replaceAll('.0', '')}/${'day'.tr}',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  );
+                })
+              ],
             )
           ],
         ),
