@@ -40,7 +40,7 @@ class FiltredCarScreen extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<CarModel> cars = snapshot.data!.docs
-                  .map((m) => CarModel.fromMap(m.data() as Map, m.id))
+                  .map((m) => CarModel.fromMap(m.data() as Map, m.reference))
                   .toList();
               if (cars.isEmpty) {
                 return Center(

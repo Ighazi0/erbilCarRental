@@ -1,4 +1,5 @@
-import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:erbil/model/car_model.dart';
 import 'package:erbil/model/currency_model.dart';
 import 'package:erbil/model/location_model.dart';
 import 'package:erbil/model/weather_model.dart';
@@ -9,7 +10,6 @@ import 'package:erbil/utilities/static_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
 class MainController extends GetxController {
@@ -19,7 +19,7 @@ class MainController extends GetxController {
       returnDate = DateTime.now().add(const Duration(days: 7)).obs;
   Rx<CurrencyModel> appCurrency = CurrencyModel(code: 'AED', rate: 1).obs;
   Rx<LocationModel> pickupLocation = LocationModel().obs;
-  final RxList<DateTime> selectedDateRange = <DateTime>[].obs;
+  Rx<CarModel> selectedCar = CarModel().obs;
 
   @override
   onInit() {
@@ -94,13 +94,13 @@ class MainController extends GetxController {
 
   fetchWeather() async {
     try {
-      final response = await http.get(Uri.parse(
-          '${EndPoints().openWeatherMapApi}q=Dubai&appid=$weatherApiKey&units=metric&lang=$appLanguage'));
+      final response = await Dio().get(
+          '${EndPoints().openWeatherMapApi}q=Dubai&appid=$weatherApiKey&units=metric&lang=$appLanguage');
       if (response.statusCode == 200) {
-        weatherData.value = WeatherModel.fromJson(json.decode(response.body));
+        weatherData.value = WeatherModel.fromJson(response.data);
       }
     } catch (e) {
-      //
+      Get.log('fetchWeather :: $e');
     }
   }
 }

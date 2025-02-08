@@ -70,4 +70,7 @@ const Map<String, String> en = {
       'While we are happy to deal with the logistics of any fines incurred while renting a Erbil vehicle, that cost will be passed onto the customer, and a 12% Admin Fee is also applicable on all Traffic Fines for this service. We will invoice these charges as and when they get posted by the relevant authorities, which may mean that there is a delay between the violation date and time to the customer being notified about it.',
   "traffic_fines_9":
       "Erbil is not responsible for any delays in invoicing or accuracy of the fines that may be a result of the information received from various government systems.",
+  'book_now': 'Book now',
+  'price_per_day': 'Price per day',
+  'total': 'Total',
 };

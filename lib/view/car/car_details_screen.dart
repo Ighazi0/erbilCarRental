@@ -1,9 +1,10 @@
 import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/model/car_model.dart';
 import 'package:erbil/style/app_theme.dart';
+import 'package:erbil/utilities/custom_ui/custom_format.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/app/widgets/custom_image.dart';
-import 'package:erbil/view/checkout/checkout_screen.dart';
+import 'package:erbil/view/checkout/screens/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,9 +37,8 @@ class CarDetailsScreen extends StatelessWidget {
                           fontSize: 16),
                     ),
                     Obx(() {
-                      var c = mainController.appCurrency.value;
                       return Text(
-                        '${c.code} ${(((carData.price ?? 0) * (c.rate ?? 0)) * mainController.calculateDays()).toStringAsFixed(2).replaceAll('.0', '')} / ${mainController.calculateDays()} ${'days'.tr}',
+                        '${CustomFormat().priceWithCurrency((carData.price ?? 0) * mainController.calculateDays())} / ${'days'.tr}',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -49,6 +49,7 @@ class CarDetailsScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
+                mainController.selectedCar.value = carData;
                 Get.to(() => const CheckoutScreen());
               }),
         ),
@@ -81,9 +82,8 @@ class CarDetailsScreen extends StatelessWidget {
                           fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                     Obx(() {
-                      var c = Get.find<MainController>().appCurrency.value;
                       return Text(
-                        '${c.code} ${((carData.price ?? 0) * (c.rate ?? 0)).toStringAsFixed(2).replaceAll('.0', '')}/${'day'.tr}',
+                        '${CustomFormat().priceWithCurrency(carData.price ?? 0)}/${'day'.tr}',
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       );
                     })

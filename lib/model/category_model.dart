@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CategoryModel {
   String? titleEn, image, titleAr, name, id;
-
   DocumentReference? docRef;
+
   CategoryModel(
       {this.id,
       this.titleEn,

@@ -64,5 +64,6 @@ const Map<String, String> ku = {
   "traffic_fines_8":
       "Gava ku em bi dildarî dibin ku serêkevanên trafîkê yên ku di dema rentalê Erbil de têne bikaranîn, ew nirx dê di ser xerîdar de bête dîtin, û 12% Xercê Adminê jî ser hemû serêkevanên trafîkê ji bo vê xizmetê dê were zêde kirin. Ev nirxên dibin gava ku ew ji hêza zanistî têne belav kirin, ku dikare vê bibe demek dereng di navbera demek xetere û dema ku xerîdar vê zaninê digihîjin.",
   "traffic_fines_9":
-      "Erbil ne mesûl e ji ber vê derengiyê di danûstandinê de an jî rastiyê serêkevanan ku dikare ji ber agahiyên hêza hukûmetê bê."
+      "Erbil ne mesûl e ji ber vê derengiyê di danûstandinê de an jî rastiyê serêkevanan ku dikare ji ber agahiyên hêza hukûmetê bê.",
+  'book_now': 'Book now',
 };

@@ -48,7 +48,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List<CarModel> cars = snapshot.data!.docs
-                        .map((m) => CarModel.fromMap(m.data() as Map, m.id))
+                        .map((m) =>
+                            CarModel.fromMap(m.data() as Map, m.reference))
                         .toList();
                     List<CarModel> result = cars
                         .where((w) =>

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CarModel {
-  final String? id;
+  final DocumentReference? docRef;
   final String? color;
   final DocumentReference? location;
   final int? cityMpg;
@@ -22,7 +22,7 @@ class CarModel {
   final String? condition;
   final DocumentReference? model;
   final int? doors;
-  final int? price;
+  final double? price;
   final List<String>? features;
   final int? highwayMpg;
   final String? description;
@@ -52,12 +52,12 @@ class CarModel {
     this.features,
     this.highwayMpg,
     this.description,
-    this.id,
+    this.docRef,
   });
 
-  factory CarModel.fromMap(Map data, String id) {
+  factory CarModel.fromMap(Map data, DocumentReference docRef) {
     return CarModel(
-      id: id,
+      docRef: docRef,
       color: data['color'],
       location: data['location'],
       cityMpg: data['cityMpg'],
@@ -77,7 +77,7 @@ class CarModel {
       condition: data['condition'],
       model: data['model'],
       doors: data['doors'],
-      price: data['price'],
+      price: double.tryParse(data['price'].toString()),
       features: data['features'] != null
           ? (data['features'] as Map<String, dynamic>)
               .values
@@ -91,7 +91,7 @@ class CarModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      'docRef': docRef,
       'color': color,
       'location': location,
       'cityMpg': cityMpg,
