@@ -1,5 +1,6 @@
 import 'package:erbil/controller/auth_controller.dart';
 import 'package:erbil/controller/main_controller.dart';
+import 'package:erbil/utilities/custom_ui/custom_snackbar.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/car/filtred_car_screen.dart';
 import 'package:erbil/view/main/home/widgets/categories_card.dart';
@@ -40,6 +41,8 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   final mainController = Get.find<MainController>();
                   if (mainController.pickupLocation.value.docRef == null) {
+                    CustomSnackbar()
+                        .showErrorSnackbar('please_select_pickup_location');
                   } else {
                     Get.to(() => FiltredCarScreen(
                           locationData: mainController.pickupLocation.value,

@@ -67,4 +67,5 @@ const Map<String, String> ku = {
       "Erbil ne mesûl e ji ber vê derengiyê di danûstandinê de an jî rastiyê serêkevanan ku dikare ji ber agahiyên hêza hukûmetê bê.",
   'book_now': 'Book now',
   'book_details': 'Book details',
+  'please_select_pickup_location': 'Please select pickup location'
 };

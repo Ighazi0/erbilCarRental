@@ -5,7 +5,7 @@ class CustomSnackbar {
   showErrorSnackbar(String title) {
     Get.showSnackbar(GetSnackBar(
       borderRadius: 25,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.all(10),
       duration: const Duration(seconds: 3),
       backgroundColor: Colors.red,
       message: title.tr,

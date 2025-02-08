@@ -74,4 +74,5 @@ const Map<String, String> en = {
   'price_per_day': 'Price per day',
   'total': 'Total',
   'book_details': 'Book details',
+  'please_select_pickup_location': 'Please select pickup location'
 };
