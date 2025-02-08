@@ -20,7 +20,7 @@ class BookingsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            authController.userData == null
+            authController.userData.value.docRef == null
                 ? Center(
                     child: Column(
                       children: [
@@ -47,7 +47,7 @@ class BookingsScreen extends StatelessWidget {
                       stream: FirebaseFirestore.instance
                           .collection('orders')
                           .where('user',
-                              isEqualTo: authController.userData?.docRef)
+                              isEqualTo: authController.userData.value.docRef)
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {

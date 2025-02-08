@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            '${'hello'.tr}${authController.userData?.fullName == null ? '' : ', '} ${authController.userData?.fullName ?? ''}',
+            '${'hello'.tr}${authController.userData.value.fullName == null ? '' : ', '} ${authController.userData.value.fullName ?? ''}',
             style: const TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.black),
           ),

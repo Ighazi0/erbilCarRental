@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  final bool toCheckoutScreen;
+  const SignInScreen({super.key, this.toCheckoutScreen = false});
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +80,10 @@ class SignInScreen extends StatelessWidget {
                               tag: 'auth',
                               child: CustomButton(
                                 onPressed: () {
+                                  FocusScope.of(context).unfocus();
                                   if (formKey.currentState!.validate()) {
-                                    authController.signInWithEmailAndPassword();
+                                    authController.signInWithEmailAndPassword(
+                                        toCheckoutScreen: toCheckoutScreen);
                                   }
                                 },
                                 title: 'sign_in',
@@ -94,7 +97,11 @@ class SignInScreen extends StatelessWidget {
                     Text("dont_have_an_account".tr),
                     TextButton(
                       onPressed: () {
-                        Get.off(() => const RegisterScreen());
+                        FocusScope.of(context).unfocus();
+
+                        Get.off(() => RegisterScreen(
+                              toCheckoutScreen: toCheckoutScreen,
+                            ));
                       },
                       child: Text(
                         'sign_up'.tr,
@@ -107,6 +114,7 @@ class SignInScreen extends StatelessWidget {
                 Align(
                   child: TextButton(
                     onPressed: () {
+                      FocusScope.of(context).unfocus();
                       Get.back();
                     },
                     child: Text(

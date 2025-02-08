@@ -1,3 +1,4 @@
+import 'package:erbil/controller/auth_controller.dart';
 import 'package:erbil/controller/checkout_controller.dart';
 import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/utilities/app_functions.dart';
@@ -5,6 +6,7 @@ import 'package:erbil/utilities/custom_ui/custom_format.dart';
 import 'package:erbil/utilities/initial_data.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/app/widgets/custom_image.dart';
+import 'package:erbil/view/auth/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -31,7 +33,14 @@ class CheckoutScreen extends StatelessWidget {
                   : CustomButton(
                       title: 'book_now',
                       onPressed: () {
-                        checkoutController.book();
+                        if (Get.find<AuthController>().userData.value.docRef ==
+                            null) {
+                          Get.to(() => const SignInScreen(
+                                toCheckoutScreen: true,
+                              ));
+                        } else {
+                          checkoutController.book();
+                        }
                       }),
             ),
           ),

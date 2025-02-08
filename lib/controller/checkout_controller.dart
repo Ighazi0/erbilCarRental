@@ -127,7 +127,7 @@ class CheckoutController extends GetxController {
         id: paymobData?.id,
         updatedAt: Timestamp.now(),
         days: calculateDays(),
-        user: Get.find<AuthController>().userData?.docRef,
+        user: Get.find<AuthController>().userData.value.docRef,
         from: Timestamp.fromDate(pickupDate.value),
         to: Timestamp.fromDate(returnDate.value),
         location: selectedCar.value.location,

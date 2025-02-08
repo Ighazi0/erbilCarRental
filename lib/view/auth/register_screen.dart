@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+  final bool toCheckoutScreen;
+  const RegisterScreen({super.key, this.toCheckoutScreen = false});
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +78,11 @@ class RegisterScreen extends StatelessWidget {
                           tag: 'auth',
                           child: CustomButton(
                             onPressed: () {
+                              FocusScope.of(context).unfocus();
+
                               if (formKey.currentState!.validate()) {
-                                authController.registerWithEmailAndPassword();
+                                authController.registerWithEmailAndPassword(
+                                    toCheckoutScreen: toCheckoutScreen);
                               }
                             },
                             title: 'sign_up',
@@ -92,7 +96,11 @@ class RegisterScreen extends StatelessWidget {
                     Text('already_have_an_account'.tr),
                     TextButton(
                       onPressed: () {
-                        Get.off(() => const SignInScreen());
+                        FocusScope.of(context).unfocus();
+
+                        Get.off(() => SignInScreen(
+                              toCheckoutScreen: toCheckoutScreen,
+                            ));
                       },
                       child: Text(
                         'sign_in'.tr,
@@ -105,6 +113,8 @@ class RegisterScreen extends StatelessWidget {
                 Align(
                   child: TextButton(
                     onPressed: () {
+                      FocusScope.of(context).unfocus();
+
                       Get.back();
                     },
                     child: Text(

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/model/app_data_model.dart';
 import 'package:erbil/model/user_model.dart';
 import 'package:erbil/utilities/custom_ui/custom_snackbar.dart';
@@ -21,8 +22,9 @@ class AuthController extends GetxController {
       sendingLink = false.obs,
       deletingAccount = false.obs;
   GetStorage getStorage = GetStorage();
-  UserModel? userData;
+  Rx<UserModel> userData = UserModel().obs;
   AppDataModel? appData;
+  final mainController = Get.find<MainController>();
 
   getAppData() async {
     await firebaseFirestore.collection('appData').doc('admin').get().then((v) {
@@ -37,7 +39,7 @@ class AuthController extends GetxController {
   getCurrentUserData(String? uid) async {
     await firebaseFirestore.collection('users').doc(uid).get().then((v) {
       if (v.exists) {
-        userData = UserModel.fromJson(v.data() as Map, v.reference);
+        userData.value = UserModel.fromJson(v.data() as Map, v.reference);
       } else {
         signOut();
       }
@@ -48,7 +50,7 @@ class AuthController extends GetxController {
     await firebaseFirestore.collection('users').doc(uid).set(userData.toJson());
   }
 
-  signInWithEmailAndPassword() async {
+  signInWithEmailAndPassword({bool toCheckoutScreen = false}) async {
     signingIn.value = true;
     try {
       await firebaseAuth.signInWithEmailAndPassword(
@@ -58,7 +60,12 @@ class AuthController extends GetxController {
       String uid = firebaseAuth.currentUser?.uid ?? '';
       await getCurrentUserData(uid);
       getStorage.write('uid', uid);
-      Get.offAll(() => const MainScreen());
+      if (toCheckoutScreen) {
+        Get.back();
+      } else {
+        mainController.mainPageIndex.value = 0;
+        Get.offAll(() => const MainScreen());
+      }
       clearData();
     } catch (e) {
       CustomSnackbar().showErrorSnackbar('error');
@@ -66,7 +73,7 @@ class AuthController extends GetxController {
     signingIn.value = false;
   }
 
-  registerWithEmailAndPassword() async {
+  registerWithEmailAndPassword({bool toCheckoutScreen = false}) async {
     signingUp.value = true;
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
@@ -74,13 +81,18 @@ class AuthController extends GetxController {
         password: password.text,
       );
       String uid = firebaseAuth.currentUser?.uid ?? '';
-      userData = UserModel(
+      userData.value = UserModel(
           uid: uid,
           email: email.text,
           password: password.text,
           fullName: name.text);
-      Get.offAll(() => const MainScreen());
-      createUserAccount(uid, userData!);
+      if (toCheckoutScreen) {
+        Get.back();
+      } else {
+        mainController.mainPageIndex.value = 0;
+        Get.offAll(() => const MainScreen());
+      }
+      createUserAccount(uid, userData.value);
       getStorage.write('uid', uid);
       clearData();
     } catch (e) {
@@ -119,7 +131,7 @@ class AuthController extends GetxController {
 
   signOut() async {
     getStorage.remove('uid');
-    userData = null;
+    userData = UserModel().obs;
     await firebaseAuth.signOut();
     Get.offAll(() => const MainScreen());
   }

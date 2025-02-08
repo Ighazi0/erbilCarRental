@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            authController.userData?.firstName ?? '',
+            authController.userData.value.firstName ?? '',
             style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
           ListTile(
             onTap: () {
               AppFunctions().onPressedWithHaptic(() {
-                if (authController.userData == null) {
+                if (authController.userData.value.docRef == null) {
                   Get.to(() => const SignInScreen());
                 } else {
                   CustomDialog().showSureDialog(
@@ -106,17 +106,22 @@ class ProfileScreen extends StatelessWidget {
               });
             },
             title: Text(
-              authController.userData == null ? 'sign_in'.tr : 'sign_out'.tr,
+              authController.userData.value.docRef == null
+                  ? 'sign_in'.tr
+                  : 'sign_out'.tr,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: authController.userData == null
+                  color: authController.userData.value.docRef == null
                       ? primaryColor
                       : Colors.red),
             ),
             leading: Icon(
-              authController.userData == null ? Icons.login : Icons.logout,
-              color:
-                  authController.userData == null ? primaryColor : Colors.red,
+              authController.userData.value.docRef == null
+                  ? Icons.login
+                  : Icons.logout,
+              color: authController.userData.value.docRef == null
+                  ? primaryColor
+                  : Colors.red,
             ),
           )
         ],
