@@ -3,7 +3,7 @@ import 'package:erbil/controller/auth_controller.dart';
 import 'package:erbil/model/order_model.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/auth/sign_in_screen.dart';
-import 'package:erbil/view/main/booking/widgets/order_card.dart';
+import 'package:erbil/view/main/booking/widgets/book_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,14 +62,16 @@ class BookingsScreen extends StatelessWidget {
                             );
                           }
                           return ListView.separated(
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 15),
                             padding: const EdgeInsets.only(top: 10),
+                            separatorBuilder: (context, index) =>
+                                const Divider(),
+                            keyboardDismissBehavior:
+                                ScrollViewKeyboardDismissBehavior.onDrag,
                             itemCount: orders.length,
                             physics: const ClampingScrollPhysics(),
                             itemBuilder: (context, index) {
                               OrderModel order = orders[index];
-                              return OrderCard(
+                              return BookCard(
                                 orderData: order,
                               );
                             },

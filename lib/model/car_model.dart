@@ -55,7 +55,7 @@ class CarModel {
     this.docRef,
   });
 
-  factory CarModel.fromMap(Map data, DocumentReference docRef) {
+  factory CarModel.fromMap(Map data, DocumentReference? docRef) {
     return CarModel(
       docRef: docRef,
       color: data['color'],

@@ -10,7 +10,7 @@ import 'package:erbil/model/order_model.dart';
 import 'package:erbil/model/paymob_model.dart';
 import 'package:erbil/utilities/custom_ui/custom_snackbar.dart';
 import 'package:erbil/view/checkout/widgets/paymob_webview.dart';
-import 'package:erbil/view/main/booking/screens/order_details_screen.dart';
+import 'package:erbil/view/main/booking/screens/book_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
@@ -138,7 +138,7 @@ class CheckoutController extends GetxController {
         .add(orderData.toJson());
     Get.offUntil(
       GetPageRoute(
-          page: () => OrderDetailsScreen(
+          page: () => BookDetailsScreen(
                 orderData: orderData,
               )),
       (route) {

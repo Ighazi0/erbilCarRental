@@ -73,4 +73,5 @@ const Map<String, String> en = {
   'book_now': 'Book now',
   'price_per_day': 'Price per day',
   'total': 'Total',
+  'book_details': 'Book details',
 };

@@ -77,6 +77,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       );
                     }
                     return ListView.separated(
+                      keyboardDismissBehavior:
+                          ScrollViewKeyboardDismissBehavior.onDrag,
                       separatorBuilder: (context, index) =>
                           const SizedBox(height: 15),
                       padding: const EdgeInsets.only(top: 10),

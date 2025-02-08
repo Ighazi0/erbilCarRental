@@ -11,19 +11,20 @@ class OrderModel {
   final double? totalPrice;
   final DocumentReference? user;
   final DocumentReference? location;
+  final String? status;
 
-  OrderModel({
-    this.car,
-    this.createdAt,
-    this.days,
-    this.from,
-    this.to,
-    this.totalPrice,
-    this.user,
-    this.id,
-    this.updatedAt,
-    this.location,
-  });
+  OrderModel(
+      {this.car,
+      this.createdAt,
+      this.days,
+      this.from,
+      this.to,
+      this.totalPrice,
+      this.user,
+      this.id,
+      this.updatedAt,
+      this.location,
+      this.status});
 
   factory OrderModel.fromJson(Map json) {
     return OrderModel(
@@ -37,6 +38,7 @@ class OrderModel {
       id: json['id'],
       updatedAt: json['updatedAt'],
       location: json['location'],
+      status: json['status'],
     );
   }
 
@@ -52,6 +54,7 @@ class OrderModel {
       'id': id,
       'updatedAt': updatedAt,
       'location': location,
+      'status': status,
     };
   }
 }
