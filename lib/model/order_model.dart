@@ -3,20 +3,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class OrderModel {
   final DocumentReference? car;
   final Timestamp? createdAt;
+  final Timestamp? updatedAt;
   final int? days;
+  final int? id;
   final Timestamp? from;
   final Timestamp? to;
-  final int? totalPrice;
+  final double? totalPrice;
   final DocumentReference? user;
 
   OrderModel({
-    required this.car,
-    required this.createdAt,
-    required this.days,
-    required this.from,
-    required this.to,
-    required this.totalPrice,
-    required this.user,
+    this.car,
+    this.createdAt,
+    this.days,
+    this.from,
+    this.to,
+    this.totalPrice,
+    this.user,
+    this.id,
+    this.updatedAt,
   });
 
   factory OrderModel.fromJson(Map json) {
@@ -26,8 +30,10 @@ class OrderModel {
       days: json['days'],
       from: json['from'],
       to: json['to'],
-      totalPrice: json['totalPrice'],
+      totalPrice: double.tryParse(json['totalPrice'].toString()),
       user: json['user'],
+      id: json['id'],
+      updatedAt: json['updatedAt'],
     );
   }
 
@@ -40,6 +46,8 @@ class OrderModel {
       'to': to,
       'totalPrice': totalPrice,
       'user': user,
+      'id': id,
+      'updatedAt': updatedAt,
     };
   }
 }

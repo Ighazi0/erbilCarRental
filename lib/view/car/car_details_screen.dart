@@ -15,6 +15,9 @@ class CarDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mainController = Get.find<MainController>();
+    if (mainController.selectedCar.value.docRef == null) {
+      mainController.selectedCar.value = carData;
+    }
     return Scaffold(
       appBar: AppBar(),
       bottomNavigationBar: SafeArea(
@@ -38,7 +41,7 @@ class CarDetailsScreen extends StatelessWidget {
                     ),
                     Obx(() {
                       return Text(
-                        '${CustomFormat().priceWithCurrency((carData.price ?? 0) * mainController.calculateDays())} / ${'days'.tr}',
+                        '${CustomFormat().priceWithCurrency(mainController.calculateTotal())} / ${'days'.tr}',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -49,7 +52,6 @@ class CarDetailsScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                mainController.selectedCar.value = carData;
                 Get.to(() => const CheckoutScreen());
               }),
         ),
@@ -83,7 +85,7 @@ class CarDetailsScreen extends StatelessWidget {
                     ),
                     Obx(() {
                       return Text(
-                        '${CustomFormat().priceWithCurrency(carData.price ?? 0)}/${'day'.tr}',
+                        '${CustomFormat().priceWithCurrency(carData.price ?? 0)} / ${'day'.tr}',
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       );
                     })

@@ -5,6 +5,6 @@ class CustomFormat {
   String priceWithCurrency(double price) {
     var c = Get.find<MainController>().appCurrency.value;
 
-    return '${c.code} ${((price) * (c.rate ?? 0)).toStringAsFixed(2).replaceAll('.0', '')}';
+    return '${c.code} ${((price) * (c.rate ?? 0)).toStringAsFixed(2).replaceAll('.00', '')}';
   }
 }

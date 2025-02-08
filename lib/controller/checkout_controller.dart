@@ -1,17 +1,23 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart' as api_dio;
+import 'package:erbil/controller/auth_controller.dart';
 import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/model/car_model.dart';
 import 'package:erbil/model/location_model.dart';
+import 'package:erbil/model/order_model.dart';
 import 'package:erbil/model/paymob_model.dart';
 import 'package:erbil/utilities/custom_ui/custom_snackbar.dart';
 import 'package:erbil/view/checkout/widgets/paymob_webview.dart';
+import 'package:erbil/view/main/booking/screens/order_details_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
 class CheckoutController extends GetxController {
   String? token;
-  RxBool booking = false.obs;
+  bool booking = false, success = false;
   PaymobModel? paymobData;
   MainController mainController = Get.find<MainController>();
   Rx<DateTime> pickupDate = DateTime.now().obs,
@@ -28,8 +34,40 @@ class CheckoutController extends GetxController {
     super.onInit();
   }
 
+  selectPickUpDateTime(BuildContext context) async {
+    DateTime? dateTime = await showOmniDateTimePicker(
+        context: context, initialDate: pickupDate.value);
+    if (dateTime != null) {
+      pickupDate.value = dateTime;
+      update();
+    }
+
+    checkDates();
+  }
+
+  selectReturnDateTime(BuildContext context) async {
+    DateTime? dateTime = await showOmniDateTimePicker(
+        context: context, initialDate: returnDate.value);
+    if (dateTime != null) {
+      returnDate.value = dateTime;
+      update();
+    }
+
+    checkDates();
+  }
+
+  checkDates() {
+    if (pickupDate.value.isAfter(returnDate.value)) {
+      returnDate.value = pickupDate.value;
+    }
+  }
+
+  double calculateTotal() {
+    return (selectedCar.value.price ?? 0) * calculateDays();
+  }
+
   int calculateDays() {
-    return (returnDate.value.difference(pickupDate.value)).inDays;
+    return returnDate.value.day - pickupDate.value.day;
   }
 
   generatePaymobToken() async {
@@ -60,7 +98,7 @@ class CheckoutController extends GetxController {
       };
 
       var data = api_dio.FormData.fromMap({
-        'amount_cents': '100',
+        'amount_cents': (calculateTotal() * 100).toString(),
         'payment_methods': '59440',
         'is_live': 'true'
       });
@@ -83,21 +121,55 @@ class CheckoutController extends GetxController {
     }
   }
 
-  createNewOrder() {}
+  createNewOrder() async {
+    OrderModel orderData = OrderModel(
+        car: selectedCar.value.docRef,
+        id: paymobData?.id,
+        updatedAt: Timestamp.now(),
+        days: calculateDays(),
+        user: Get.find<AuthController>().userData?.docRef,
+        from: Timestamp.fromDate(pickupDate.value),
+        to: Timestamp.fromDate(returnDate.value),
+        totalPrice: calculateTotal(),
+        createdAt: Timestamp.now());
+    await FirebaseFirestore.instance
+        .collection('orders')
+        .add(orderData.toJson());
+    Get.offUntil(
+      GetPageRoute(
+          page: () => OrderDetailsScreen(
+                orderData: orderData,
+              )),
+      (route) {
+        return route.isFirst;
+      },
+    );
+    success = false;
+    booking = false;
+  }
 
   book() async {
     try {
-      booking.value = true;
+      booking = true;
+      update();
       await generatePaymobToken();
       await generatePaymobLink();
       if (paymobData != null) {
-        Get.to(() => PaymobWebview(
+        await Get.to(() => PaymobWebview(
               link: paymobData?.clientUrl ?? '',
+              checkoutController: this,
             ));
+        if (success) {
+          await createNewOrder();
+        } else {
+          booking = false;
+          update();
+        }
       }
     } catch (e) {
       CustomSnackbar().showErrorSnackbar('error3 $e');
+      booking = false;
+      update();
     }
-    booking.value = false;
   }
 }

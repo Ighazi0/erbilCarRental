@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:erbil/view/app/widgets/shimmer_effect.dart';
 import 'package:flutter/material.dart';
 
 class CustomImage extends StatelessWidget {
@@ -15,12 +14,7 @@ class CustomImage extends StatelessWidget {
       errorWidget: (context, url, error) => const SizedBox(
         child: Icon(Icons.error),
       ),
-      progressIndicatorBuilder: (context, url, progress) => ShimmerEffect(
-        isLoading: true,
-        child: Container(
-          color: Colors.black,
-        ),
-      ),
+      progressIndicatorBuilder: (context, url, progress) => const SizedBox(),
     );
   }
 }

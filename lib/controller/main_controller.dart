@@ -28,8 +28,12 @@ class MainController extends GetxController {
     super.onInit();
   }
 
+  double calculateTotal() {
+    return (selectedCar.value.price ?? 0) * calculateDays();
+  }
+
   int calculateDays() {
-    return (returnDate.value.difference(pickupDate.value)).inDays;
+    return returnDate.value.day - pickupDate.value.day;
   }
 
   getSavedCurrency() {
