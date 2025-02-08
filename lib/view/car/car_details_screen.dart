@@ -1,7 +1,9 @@
 import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/model/car_model.dart';
+import 'package:erbil/model/location_model.dart';
 import 'package:erbil/style/app_theme.dart';
 import 'package:erbil/utilities/custom_ui/custom_format.dart';
+import 'package:erbil/utilities/initial_data.dart';
 import 'package:erbil/view/app/widgets/custom_button.dart';
 import 'package:erbil/view/app/widgets/custom_image.dart';
 import 'package:erbil/view/checkout/screens/checkout_screen.dart';
@@ -14,10 +16,12 @@ class CarDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LocationModel? locationData;
     final mainController = Get.find<MainController>();
     if (mainController.selectedCar.value.docRef == null) {
       mainController.selectedCar.value = carData;
     }
+    if (mainController.pickupLocation.value.docRef == null) {}
     return Scaffold(
       appBar: AppBar(),
       bottomNavigationBar: SafeArea(
@@ -91,6 +95,41 @@ class CarDetailsScreen extends StatelessWidget {
                     })
                   ],
                 ),
+                if (carData.location != null)
+                  FutureBuilder(
+                    future: carData.location?.get(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        LocationModel location = LocationModel.fromMap(
+                            snapshot.data?.data() as Map,
+                            snapshot.data?.reference);
+                        locationData ??= location;
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.location_on,
+                                size: 20,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                (appLanguage == 'en'
+                                        ? location.nameEn
+                                        : location.nameAr) ??
+                                    '',
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Wrap(
@@ -125,7 +164,10 @@ class CarDetailsScreen extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.local_gas_station),
+                    const Icon(
+                      Icons.local_gas_station,
+                      size: 20,
+                    ),
                     const SizedBox(
                       width: 5,
                     ),

@@ -130,6 +130,7 @@ class CheckoutController extends GetxController {
         user: Get.find<AuthController>().userData?.docRef,
         from: Timestamp.fromDate(pickupDate.value),
         to: Timestamp.fromDate(returnDate.value),
+        location: selectedCar.value.location,
         totalPrice: calculateTotal(),
         createdAt: Timestamp.now());
     await FirebaseFirestore.instance

@@ -17,7 +17,7 @@ class LocationModel {
     };
   }
 
-  static LocationModel fromMap(Map map, DocumentReference docRef) {
+  static LocationModel fromMap(Map map, DocumentReference? docRef) {
     return LocationModel(
         nameAr: map['name_ar'], nameEn: map['name_en'], docRef: docRef);
   }

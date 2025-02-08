@@ -10,6 +10,7 @@ class OrderModel {
   final Timestamp? to;
   final double? totalPrice;
   final DocumentReference? user;
+  final DocumentReference? location;
 
   OrderModel({
     this.car,
@@ -21,6 +22,7 @@ class OrderModel {
     this.user,
     this.id,
     this.updatedAt,
+    this.location,
   });
 
   factory OrderModel.fromJson(Map json) {
@@ -34,6 +36,7 @@ class OrderModel {
       user: json['user'],
       id: json['id'],
       updatedAt: json['updatedAt'],
+      location: json['location'],
     );
   }
 
@@ -48,6 +51,7 @@ class OrderModel {
       'user': user,
       'id': id,
       'updatedAt': updatedAt,
+      'location': location,
     };
   }
 }
