@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '436707362957',
     projectId: 'erbil-comma',
     storageBucket: 'erbil-comma.firebasestorage.app',
-    iosClientId: '436707362957-pv2gdt6la8n23ujuqvl823qist5onrmm.apps.googleusercontent.com',
-    iosBundleId: 'com.commatech.erbil',
+    iosClientId:
+        '436707362957-pv2gdt6la8n23ujuqvl823qist5onrmm.apps.googleusercontent.com',
+    iosBundleId: 'com.comma.erbil',
   );
 }

@@ -74,5 +74,13 @@ const Map<String, String> en = {
   'price_per_day': 'Price per day',
   'total': 'Total',
   'book_details': 'Book details',
-  'please_select_pickup_location': 'Please select pickup location'
+  'please_select_pickup_location': 'Please select pickup location',
+  "invalid-email": "The email address is not properly formatted.",
+  "user-not-found": "No user found for the provided email.",
+  "wrong-password": "The password is incorrect.",
+  "email-already-in-use": "The email is already registered.",
+  "weak-password": "The provided password is too weak.",
+  "too-many-requests": "Too many failed login attempts.",
+  "network-request-failed": "No internet connection or network issue.",
+  "operation-not-allowed": "Email/password sign-up is disabled in Firebase.",
 };

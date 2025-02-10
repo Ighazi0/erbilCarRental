@@ -67,8 +67,8 @@ class AuthController extends GetxController {
         Get.offAll(() => const MainScreen());
       }
       clearData();
-    } catch (e) {
-      CustomSnackbar().showErrorSnackbar('error');
+    } on FirebaseAuthException catch (e) {
+      CustomSnackbar().showErrorSnackbar(e.code.tr);
     }
     signingIn.value = false;
   }
@@ -81,10 +81,17 @@ class AuthController extends GetxController {
         password: password.text,
       );
       String uid = firebaseAuth.currentUser?.uid ?? '';
+      var docRef = FirebaseFirestore.instance.collection('users').doc(uid);
       userData.value = UserModel(
           uid: uid,
           email: email.text,
           password: password.text,
+          createdAt: Timestamp.now(),
+          firstName: name.text.split(' ').first,
+          lastName: name.text.split(' ').length > 1
+              ? name.text.split(' ').last
+              : null,
+          docRef: docRef,
           fullName: name.text);
       if (toCheckoutScreen) {
         Get.back();
@@ -95,10 +102,10 @@ class AuthController extends GetxController {
       createUserAccount(uid, userData.value);
       getStorage.write('uid', uid);
       clearData();
-    } catch (e) {
-      CustomSnackbar().showErrorSnackbar('error');
+    } on FirebaseAuthException catch (e) {
+      CustomSnackbar().showErrorSnackbar(e.code.tr);
     }
-    signingIn.value = false;
+    signingUp.value = false;
   }
 
   deleteAccount(String uid) async {
@@ -131,8 +138,7 @@ class AuthController extends GetxController {
 
   signOut() async {
     getStorage.remove('uid');
-    userData = UserModel().obs;
+    userData.value = UserModel();
     await firebaseAuth.signOut();
-    Get.offAll(() => const MainScreen());
   }
 }

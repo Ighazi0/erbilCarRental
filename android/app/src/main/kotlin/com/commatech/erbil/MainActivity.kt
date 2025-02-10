@@ -1,4 +1,4 @@
-package com.commatech.erbil
+package com.comma.erbil
 
 import io.flutter.embedding.android.FlutterActivity
 

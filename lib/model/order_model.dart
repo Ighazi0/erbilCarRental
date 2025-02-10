@@ -5,7 +5,7 @@ class OrderModel {
   final Timestamp? createdAt;
   final Timestamp? updatedAt;
   final int? days;
-  final int? id;
+  final int? orderId;
   final Timestamp? from;
   final Timestamp? to;
   final double? totalPrice;
@@ -21,7 +21,7 @@ class OrderModel {
       this.to,
       this.totalPrice,
       this.user,
-      this.id,
+      this.orderId,
       this.updatedAt,
       this.location,
       this.status});
@@ -35,7 +35,7 @@ class OrderModel {
       to: json['to'],
       totalPrice: double.tryParse(json['totalPrice'].toString()),
       user: json['user'],
-      id: json['id'],
+      orderId: json['order_id'],
       updatedAt: json['updatedAt'],
       location: json['location'],
       status: json['status'],
@@ -51,7 +51,7 @@ class OrderModel {
       'to': to,
       'totalPrice': totalPrice,
       'user': user,
-      'id': id,
+      'id': orderId,
       'updatedAt': updatedAt,
       'location': location,
       'status': status,

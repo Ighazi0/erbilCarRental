@@ -14,7 +14,6 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthController authController = Get.find<AuthController>();
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -70,24 +69,26 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Obx(
-                  () => authController.signingUp.value
-                      ? const CircularProgressIndicator(
-                          color: primaryColor,
-                        )
-                      : Hero(
-                          tag: 'auth',
-                          child: CustomButton(
-                            onPressed: () {
-                              FocusScope.of(context).unfocus();
+                  () => Center(
+                    child: authController.signingUp.value
+                        ? const CircularProgressIndicator(
+                            color: primaryColor,
+                          )
+                        : Hero(
+                            tag: 'auth',
+                            child: CustomButton(
+                              onPressed: () {
+                                FocusScope.of(context).unfocus();
 
-                              if (formKey.currentState!.validate()) {
-                                authController.registerWithEmailAndPassword(
-                                    toCheckoutScreen: toCheckoutScreen);
-                              }
-                            },
-                            title: 'sign_up',
+                                if (formKey.currentState!.validate()) {
+                                  authController.registerWithEmailAndPassword(
+                                      toCheckoutScreen: toCheckoutScreen);
+                                }
+                              },
+                              title: 'sign_up',
+                            ),
                           ),
-                        ),
+                  ),
                 ),
                 const Spacer(),
                 Row(

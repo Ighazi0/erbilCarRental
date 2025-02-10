@@ -1,16 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CategoryModel {
-  String? titleEn, image, titleAr, name, id;
+  String? titleEn, image, titleAr, id;
   DocumentReference? docRef;
 
-  CategoryModel(
-      {this.id,
-      this.titleEn,
-      this.titleAr,
-      this.image,
-      this.name,
-      this.docRef});
+  CategoryModel({this.id, this.titleEn, this.titleAr, this.image, this.docRef});
 
   factory CategoryModel.fromJson(Map json, DocumentReference docRef) {
     return CategoryModel(
@@ -18,7 +12,6 @@ class CategoryModel {
       titleEn: json['titleEn'],
       titleAr: json['titleAr'],
       image: json['image'],
-      name: json['name'],
       docRef: docRef,
     );
   }
@@ -27,7 +20,6 @@ class CategoryModel {
         'id': id,
         'titleEn': titleEn,
         'titleAr': titleAr,
-        'name': name,
         'image': image,
       };
 }

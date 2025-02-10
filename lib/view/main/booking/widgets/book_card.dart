@@ -13,7 +13,7 @@ class BookCard extends StatelessWidget {
       onTap: () {
         Get.to(() => BookDetailsScreen(orderData: orderData));
       },
-      title: Text('#${orderData.id}'),
+      title: Text('#${orderData.orderId}'),
     );
   }
 }

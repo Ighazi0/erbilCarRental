@@ -25,7 +25,7 @@ class BookDetailsScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         children: [
           Text(
-            '#${orderData.id}',
+            '#${orderData.orderId}',
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(

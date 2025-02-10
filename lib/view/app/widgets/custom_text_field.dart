@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autocorrect: false,
       controller: controller,
       cursorColor: primaryColor,
       decoration: InputDecoration(

@@ -1,6 +1,6 @@
-import 'package:erbil/controller/main_controller.dart';
 import 'package:erbil/model/car_model.dart';
 import 'package:erbil/style/app_theme.dart';
+import 'package:erbil/utilities/custom_ui/custom_format.dart';
 import 'package:erbil/view/app/widgets/custom_image.dart';
 import 'package:erbil/view/car/car_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -95,9 +95,8 @@ class CarCard extends StatelessWidget {
                   ],
                 ),
                 Obx(() {
-                  var c = Get.find<MainController>().appCurrency.value;
                   return Text(
-                    '${c.code} ${((carData.price ?? 0) * (c.rate ?? 0)).toStringAsFixed(2).replaceAll('.0', '')}/${'day'.tr}',
+                    '${CustomFormat().priceWithCurrency(carData.price ?? 0)}/${'day'.tr}',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   );
                 })

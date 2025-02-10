@@ -66,6 +66,10 @@ class CheckoutController extends GetxController {
     return (selectedCar.value.price ?? 0) * calculateDays();
   }
 
+  String paymobAmount() {
+    return (calculateTotal() * 100).toString();
+  }
+
   int calculateDays() {
     return returnDate.value.day - pickupDate.value.day;
   }
@@ -96,9 +100,8 @@ class CheckoutController extends GetxController {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token'
       };
-
       var data = api_dio.FormData.fromMap({
-        'amount_cents': (calculateTotal() * 100).toString(),
+        'amount_cents': paymobAmount(),
         'payment_methods': '59440',
         'is_live': 'true'
       });
@@ -124,7 +127,7 @@ class CheckoutController extends GetxController {
   createNewOrder() async {
     OrderModel orderData = OrderModel(
         car: selectedCar.value.docRef,
-        id: paymobData?.id,
+        orderId: paymobData?.id,
         updatedAt: Timestamp.now(),
         days: calculateDays(),
         user: Get.find<AuthController>().userData.value.docRef,
